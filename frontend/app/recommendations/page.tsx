@@ -24,7 +24,7 @@ export default function RecommendationsPage() {
   const [recommendations, setRecommendations] = useState<RecommendationsData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchGuidance = async () => {
+  const fetchGuidance = React.useCallback(async () => {
     setLoading(true);
     try {
       const data = await getRecommendations(selectedShape, selectedGoal, selectedLevel);
@@ -34,11 +34,11 @@ export default function RecommendationsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedShape, selectedGoal, selectedLevel]);
 
   useEffect(() => {
     fetchGuidance();
-  }, [selectedShape, selectedGoal, selectedLevel]);
+  }, [fetchGuidance]);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50/50">

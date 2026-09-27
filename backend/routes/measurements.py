@@ -40,7 +40,7 @@ def create_measurement():
 
 @measurements_bp.route("/measurements", methods=["GET"])
 def list_measurements():
-    user_id = request.args.get("userId", "guest")
+    user_id = request.args.get("userId")
     limit = int(request.args.get("limit", 100))
     try:
         records = get_measurements(user_id=user_id, limit=limit)
@@ -70,7 +70,7 @@ def remove_measurement(measurement_id: int):
 
 @measurements_bp.route("/progress", methods=["GET"])
 def get_progress():
-    user_id = request.args.get("userId", "guest")
+    user_id = request.args.get("userId")
     try:
         progress_data = get_progress_timeline(user_id=user_id)
         return jsonify({"success": True, "data": progress_data}), 200

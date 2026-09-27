@@ -10,12 +10,13 @@ from typing import Dict, Any, List, Optional
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "..", "bodycurve.db")
 
-def get_db_connection(db_path: str = DB_PATH) -> sqlite3.Connection:
-    conn = sqlite3.connect(db_path)
+def get_db_connection(db_path: Optional[str] = None) -> sqlite3.Connection:
+    target_path = db_path or DB_PATH
+    conn = sqlite3.connect(target_path)
     conn.row_factory = sqlite3.Row
     return conn
 
-def init_db(db_path: str = DB_PATH):
+def init_db(db_path: Optional[str] = None):
     """Initialize database tables if they do not exist."""
     with get_db_connection(db_path) as conn:
         cursor = conn.cursor()
@@ -56,7 +57,7 @@ def init_db(db_path: str = DB_PATH):
 
         conn.commit()
 
-def save_measurement(data: Dict[str, Any], db_path: str = DB_PATH) -> Dict[str, Any]:
+def save_measurement(data: Dict[str, Any], db_path: Optional[str] = None) -> Dict[str, Any]:
     """Insert a new measurement record and return the saved object."""
     date_str = data.get("date") or datetime.now().strftime("%Y-%m-%d")
     user_id = data.get("userId") or data.get("user_id") or "guest"
@@ -106,7 +107,7 @@ def save_measurement(data: Dict[str, Any], db_path: str = DB_PATH) -> Dict[str, 
         "notes": notes,
     }
 
-def get_measurements(user_id: str = "guest", limit: int = 100, db_path: str = DB_PATH) -> List[Dict[str, Any]]:
+def get_measurements(user_id: Optional[str] = None, limit: int = 100, db_path: Optional[str] = None) -> List[Dict[str, Any]]:
     """Retrieve historical measurements ordered by date descending."""
     with get_db_connection(db_path) as conn:
         cursor = conn.cursor()
@@ -147,7 +148,7 @@ def get_measurements(user_id: str = "guest", limit: int = 100, db_path: str = DB
         for row in rows
     ]
 
-def get_measurement_by_id(measurement_id: int, db_path: str = DB_PATH) -> Optional[Dict[str, Any]]:
+def get_measurement_by_id(measurement_id: int, db_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
     """Retrieve a single measurement by ID."""
     with get_db_connection(db_path) as conn:
         cursor = conn.cursor()
@@ -176,7 +177,7 @@ def get_measurement_by_id(measurement_id: int, db_path: str = DB_PATH) -> Option
         "createdAt": row["created_at"],
     }
 
-def delete_measurement(measurement_id: int, db_path: str = DB_PATH) -> bool:
+def delete_measurement(measurement_id: int, db_path: Optional[str] = None) -> bool:
     """Delete a measurement record by ID. Returns True if deleted."""
     with get_db_connection(db_path) as conn:
         cursor = conn.cursor()
@@ -184,16 +185,23 @@ def delete_measurement(measurement_id: int, db_path: str = DB_PATH) -> bool:
         conn.commit()
         return cursor.rowcount > 0
 
-def get_progress_timeline(user_id: str = "guest", db_path: str = DB_PATH) -> Dict[str, Any]:
+def get_progress_timeline(user_id: Optional[str] = None, db_path: Optional[str] = None) -> Dict[str, Any]:
     """Retrieve timeline measurements ordered chronologically for charting."""
     with get_db_connection(db_path) as conn:
         cursor = conn.cursor()
-        cursor.execute("""
-            SELECT date, weight, waist, hip, bust, bmi, waist_hip_ratio, body_shape
-            FROM measurements
-            WHERE user_id = ?
-            ORDER BY date ASC, id ASC
-        """, (user_id,))
+        if user_id:
+            cursor.execute("""
+                SELECT date, weight, waist, hip, bust, bmi, waist_hip_ratio, body_shape
+                FROM measurements
+                WHERE user_id = ?
+                ORDER BY date ASC, id ASC
+            """, (user_id,))
+        else:
+            cursor.execute("""
+                SELECT date, weight, waist, hip, bust, bmi, waist_hip_ratio, body_shape
+                FROM measurements
+                ORDER BY date ASC, id ASC
+            """)
         rows = cursor.fetchall()
 
     timeline = [

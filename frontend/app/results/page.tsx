@@ -76,7 +76,7 @@ export default function ResultsPage() {
           <div className="p-12 text-center bg-white rounded-2xl border border-slate-200 space-y-4">
             <h3 className="text-lg font-bold text-slate-800">No Assessment Found in Session</h3>
             <p className="text-sm text-slate-500 max-w-md mx-auto">
-              You haven't run a measurement analysis yet. Enter your measurements on the analysis page to view your classification.
+              You haven&apos;t run a measurement analysis yet. Enter your measurements on the analysis page to view your classification.
             </p>
             <Link
               href="/analyze"

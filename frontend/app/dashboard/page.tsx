@@ -88,7 +88,7 @@ export default function DashboardPage() {
             </div>
             <h3 className="text-xl font-bold text-slate-800">Welcome to BodyCurve Analyzer</h3>
             <p className="mt-2 text-sm text-slate-500 leading-relaxed">
-              You haven't logged any body measurements yet. Perform your first quick analysis to establish your baseline body shape and start tracking progress.
+              You haven&apos;t logged any body measurements yet. Perform your first quick analysis to establish your baseline body shape and start tracking progress.
             </p>
             <div className="mt-6">
               <Link

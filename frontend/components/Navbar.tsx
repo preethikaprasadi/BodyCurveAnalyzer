@@ -2,10 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Activity, BarChart2, Compass, Home, Sparkles } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import {
+  Activity,
+  BarChart2,
+  Compass,
+  Home,
+  Sparkles,
+  User,
+  LogOut,
+  LogIn,
+} from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { user, logout } = useAuth();
 
   const navLinks = [
     { href: "/", label: "Home", icon: Home },
@@ -55,12 +66,48 @@ export default function Navbar() {
               );
             })}
 
-            <Link
-              href="/analyze"
-              className="ml-2 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 shadow-sm transition-all hover:shadow"
-            >
-              Analyze Now
-            </Link>
+            {/* Auth Buttons */}
+            {user ? (
+              <div className="flex items-center gap-1.5 ml-2 pl-2 border-l border-slate-200">
+                <Link
+                  href="/profile"
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                    pathname === "/profile"
+                      ? "bg-teal-50 text-teal-700 font-semibold"
+                      : "text-slate-700 hover:bg-slate-100"
+                  }`}
+                  title="Profile Settings"
+                >
+                  <div className="w-6 h-6 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-xs">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="hidden lg:inline max-w-[100px] truncate">{user.name}</span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={logout}
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                  title="Sign Out"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1.5 ml-2 pl-2 border-l border-slate-200">
+                <Link
+                  href="/login"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/register"
+                  className="hidden sm:inline-flex px-3 py-1.5 rounded-lg text-xs font-semibold bg-teal-600 hover:bg-teal-700 text-white shadow-2xs transition-colors"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
           </nav>
         </div>
       </div>

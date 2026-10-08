@@ -179,3 +179,124 @@ Retrieve timeline points ordered chronologically for visualization charts.
   }
 }
 ```
+
+---
+
+## 5. User Authentication & Profile Management
+
+All authenticated endpoints require an `Authorization: Bearer <token>` HTTP header.
+
+### `POST /api/auth/register`
+Registers a new user account with secure password hashing and returns an initial JWT authentication token.
+
+#### Request Body:
+| Field | Type | Required | Description |
+| :--- | :---: | :---: | :--- |
+| `name` | `string` | Yes | Full name (minimum 2 chars) |
+| `email` | `string` | Yes | Valid email address |
+| `password` | `string` | Yes | Raw password (minimum 6 chars) |
+| `ageRange` | `string` | No | Age bracket (e.g. `20-29`, `30-39`) |
+| `gender` | `string` | No | Self-identified gender |
+| `goal` | `string` | No | Default fitness goal |
+| `activityLevel` | `string` | No | Activity level |
+
+#### Response (`201 Created`):
+```json
+{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsIn...",
+  "user": {
+    "id": "usr_9981a2f0-...",
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "ageRange": "25-29",
+    "gender": "female",
+    "goal": "maintain",
+    "activityLevel": "intermediate"
+  }
+}
+```
+
+### `POST /api/auth/login`
+Authenticates credentials against stored password hashes and issues a 7-day signed JWT token.
+
+#### Request Body:
+```json
+{
+  "email": "jane@example.com",
+  "password": "SecurePassword123!"
+}
+```
+
+#### Response (`200 OK`):
+```json
+{
+  "success": true,
+  "token": "eyJhbGciOiJIUzI1NiIsIn...",
+  "user": {
+    "id": "usr_9981a2f0-...",
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "ageRange": "25-29",
+    "gender": "female",
+    "goal": "maintain",
+    "activityLevel": "intermediate"
+  }
+}
+```
+
+### `GET /api/auth/me`
+Fetches the currently authenticated profile using the Bearer JWT token.
+
+#### Headers:
+`Authorization: Bearer <token>`
+
+#### Response (`200 OK`):
+```json
+{
+  "success": true,
+  "user": {
+    "id": "usr_9981a2f0-...",
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "ageRange": "25-29",
+    "gender": "female",
+    "goal": "maintain",
+    "activityLevel": "intermediate"
+  }
+}
+```
+
+### `PUT /api/auth/profile`
+Updates profile demographics, goals, or activity level.
+
+#### Headers:
+`Authorization: Bearer <token>`
+
+#### Request Body:
+```json
+{
+  "name": "Jane Smith",
+  "ageRange": "30-39",
+  "gender": "female",
+  "goal": "muscle_gain",
+  "activityLevel": "advanced"
+}
+```
+
+#### Response (`200 OK`):
+```json
+{
+  "success": true,
+  "user": {
+    "id": "usr_9981a2f0-...",
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    "ageRange": "30-39",
+    "gender": "female",
+    "goal": "muscle_gain",
+    "activityLevel": "advanced"
+  }
+}
+```
+

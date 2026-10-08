@@ -127,3 +127,22 @@ export interface ProgressData {
   totalRecords: number;
   timeline: ProgressTimelinePoint[];
 }
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  ageRange?: string;
+  gender?: string;
+  goal?: FitnessGoal;
+  activityLevel?: ActivityLevel;
+  createdAt?: string;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  token?: string;
+  user?: UserProfile;
+  error?: string;
+  details?: string[];
+}

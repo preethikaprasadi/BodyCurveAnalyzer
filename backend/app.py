@@ -18,6 +18,7 @@ from backend.models.database import init_db
 from backend.routes.analysis import analysis_bp
 from backend.routes.recommendations import recommendations_bp
 from backend.routes.measurements import measurements_bp
+from backend.routes.auth import auth_bp
 
 load_dotenv()
 
@@ -41,6 +42,7 @@ def create_app(test_config=None) -> Flask:
     app.register_blueprint(analysis_bp)
     app.register_blueprint(recommendations_bp)
     app.register_blueprint(measurements_bp)
+    app.register_blueprint(auth_bp)
 
     @app.route("/api/health", methods=["GET"])
     def health_check():

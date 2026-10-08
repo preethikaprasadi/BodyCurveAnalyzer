@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import {
   HelpCircle,
   Sparkles,
@@ -46,6 +47,7 @@ const PRESETS = [
 
 export default function MeasurementForm() {
   const router = useRouter();
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState<MeasurementInput>({
     height: 165,
@@ -59,6 +61,17 @@ export default function MeasurementForm() {
     saveRecord: true,
     notes: "",
   });
+
+  useEffect(() => {
+    if (user) {
+      setFormData((prev) => ({
+        ...prev,
+        goal: user.goal || prev.goal,
+        activityLevel: user.activityLevel || prev.activityLevel,
+        userId: user.id,
+      }));
+    }
+  }, [user]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

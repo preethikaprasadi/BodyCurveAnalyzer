@@ -19,17 +19,20 @@ import {
   ArrowRight,
   Loader2,
 } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function DashboardPage() {
+  const { user } = useAuth();
   const [measurements, setMeasurements] = useState<MeasurementRecord[]>([]);
   const [progress, setProgress] = useState<ProgressData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const loadData = async () => {
+  const loadData = React.useCallback(async () => {
     try {
+      const targetUserId = user ? user.id : "guest";
       const [records, prog] = await Promise.all([
-        fetchMeasurements("guest", 5),
-        fetchProgress("guest"),
+        fetchMeasurements(targetUserId, 5),
+        fetchProgress(targetUserId),
       ]);
       setMeasurements(records);
       setProgress(prog);
@@ -38,11 +41,11 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   const latest = measurements.length > 0 ? measurements[0] : null;
 

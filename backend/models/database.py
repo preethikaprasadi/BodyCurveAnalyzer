@@ -5,6 +5,7 @@ Lightweight, thread-safe, and zero-daemon overhead.
 
 import os
 import sqlite3
+import uuid
 from datetime import datetime
 from typing import Dict, Any, List, Optional
 
@@ -43,17 +44,30 @@ def init_db(db_path: Optional[str] = None):
             )
         """)
 
-        # Users table (for optional profile/user tracking)
+        # Users table (with authentication fields)
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS users (
                 id TEXT PRIMARY KEY,
                 name TEXT NOT NULL,
                 email TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL DEFAULT '',
+                age_range TEXT DEFAULT '',
+                gender TEXT DEFAULT '',
                 goal TEXT DEFAULT 'maintain',
                 activity_level TEXT DEFAULT 'beginner',
                 created_at TEXT DEFAULT CURRENT_TIMESTAMP
             )
         """)
+
+        # Safe schema migration for pre-existing tables
+        cursor.execute("PRAGMA table_info(users)")
+        existing_cols = [row[1] for row in cursor.fetchall()]
+        if "password_hash" not in existing_cols:
+            cursor.execute("ALTER TABLE users ADD COLUMN password_hash TEXT DEFAULT ''")
+        if "age_range" not in existing_cols:
+            cursor.execute("ALTER TABLE users ADD COLUMN age_range TEXT DEFAULT ''")
+        if "gender" not in existing_cols:
+            cursor.execute("ALTER TABLE users ADD COLUMN gender TEXT DEFAULT ''")
 
         conn.commit()
 
@@ -222,3 +236,83 @@ def get_progress_timeline(user_id: Optional[str] = None, db_path: Optional[str] 
         "totalRecords": len(timeline),
         "timeline": timeline,
     }
+
+def create_user(
+    name: str,
+    email: str,
+    password_hash: str,
+    age_range: str = "",
+    gender: str = "",
+    goal: str = "maintain",
+    activity_level: str = "beginner",
+    db_path: Optional[str] = None
+) -> Dict[str, Any]:
+    """Insert a new user account into SQLite."""
+    user_id = str(uuid.uuid4())
+    normalized_email = email.lower().strip()
+    with get_db_connection(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO users (id, name, email, password_hash, age_range, gender, goal, activity_level)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """, (user_id, name, normalized_email, password_hash, age_range, gender, goal, activity_level))
+        conn.commit()
+
+    return {
+        "id": user_id,
+        "name": name,
+        "email": normalized_email,
+        "ageRange": age_range,
+        "gender": gender,
+        "goal": goal,
+        "activityLevel": activity_level,
+    }
+
+def get_user_by_email(email: str, db_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """Retrieve user record by email including password hash for authentication."""
+    with get_db_connection(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE email = ?", (email.lower().strip(),))
+        row = cursor.fetchone()
+    if not row:
+        return None
+    return dict(row)
+
+def get_user_by_id(user_id: str, db_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """Retrieve sanitized user profile by user ID."""
+    with get_db_connection(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
+        row = cursor.fetchone()
+    if not row:
+        return None
+    row_dict = dict(row)
+    return {
+        "id": row_dict["id"],
+        "name": row_dict["name"],
+        "email": row_dict["email"],
+        "ageRange": row_dict.get("age_range", ""),
+        "gender": row_dict.get("gender", ""),
+        "goal": row_dict.get("goal", "maintain"),
+        "activityLevel": row_dict.get("activity_level", "beginner"),
+        "createdAt": row_dict.get("created_at", ""),
+    }
+
+def update_user_profile(user_id: str, updates: Dict[str, Any], db_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """Update profile fields for a user."""
+    allowed = ["name", "age_range", "gender", "goal", "activity_level"]
+    fields = []
+    values = []
+    for k, v in updates.items():
+        snake_k = "age_range" if k == "ageRange" else ("activity_level" if k == "activityLevel" else k)
+        if snake_k in allowed:
+            fields.append(f"{snake_k} = ?")
+            values.append(v)
+    if not fields:
+        return get_user_by_id(user_id, db_path)
+    values.append(user_id)
+    with get_db_connection(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"UPDATE users SET {', '.join(fields)} WHERE id = ?", tuple(values))
+        conn.commit()
+    return get_user_by_id(user_id, db_path)

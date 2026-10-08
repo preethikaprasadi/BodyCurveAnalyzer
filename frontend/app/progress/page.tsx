@@ -9,18 +9,21 @@ import MeasurementHistoryTable from "@/components/MeasurementHistoryTable";
 import { MeasurementRecord, ProgressData } from "@/types";
 import { fetchMeasurements, fetchProgress } from "@/lib/api";
 import { BarChart2, PlusCircle, RefreshCw, Loader2 } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function ProgressPage() {
+  const { user } = useAuth();
   const [records, setRecords] = useState<MeasurementRecord[]>([]);
   const [progress, setProgress] = useState<ProgressData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const loadData = async () => {
+  const loadData = React.useCallback(async () => {
     setLoading(true);
     try {
+      const targetUserId = user ? user.id : "guest";
       const [fetchedRecords, fetchedProgress] = await Promise.all([
-        fetchMeasurements("guest", 100),
-        fetchProgress("guest"),
+        fetchMeasurements(targetUserId, 100),
+        fetchProgress(targetUserId),
       ]);
       setRecords(fetchedRecords);
       setProgress(fetchedProgress);
@@ -29,11 +32,11 @@ export default function ProgressPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50/50">

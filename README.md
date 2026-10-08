@@ -6,7 +6,7 @@
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue.svg)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8.svg)](https://tailwindcss.com/)
-[![Tests](https://img.shields.io/badge/Tests-17%20Passed-emerald.svg)](https://docs.pytest.org/)
+[![Tests](https://img.shields.io/badge/Tests-22%20Passed-emerald.svg)](https://docs.pytest.org/)
 
 > **An end-to-end, AI/ML-assisted full-stack platform for anatomical body proportion analysis, silhouette classification, and personalized wellness and style guidance.**
 
@@ -26,6 +26,7 @@ The application is engineered from the ground up to be **lightweight, resource-e
 - **Biomechanical Ratio Engine**: Automatically extracts Body Mass Index (BMI), Waist-to-Hip Ratio (WHR), Shoulder-to-Hip Ratio (SHR), and Waist-to-Bust Ratio (WBR).
 - **Rule-Based Recommendation Engine**: Tailors fitness routines, non-medical nutritional habits, posture cues, and flattering garment silhouettes based on shape, goal, and experience level.
 - **Progress Tracking**: Tracks body changes over time with interactive **Recharts** time-series graphs and historical measurement logs.
+- **User Authentication & Profile**: Secure JWT-based authentication with bcrypt password hashing and persistent user preferences.
 - **Zero-Daemon Local Persistence**: Thread-safe SQLite persistence with parameterized SQL queries ensuring complete injection protection.
 - **Production-Ready**: Multi-stage Dockerfiles, Docker Compose, WSGI entrypoint, and Procfile for cloud deployment.
 
@@ -125,6 +126,10 @@ All candidate models were benchmarked on CPU using **Stratified 5-Fold Cross-Val
 | `GET` | `/api/measurements` | List past measurement records |
 | `DELETE` | `/api/measurements/:id` | Delete a specific measurement record |
 | `GET` | `/api/progress` | Retrieve chronological timeline points for progress charts |
+| `POST` | `/api/auth/register` | Register new account with password hashing & return JWT |
+| `POST` | `/api/auth/login` | Authenticate user credentials and return signed JWT |
+| `GET` | `/api/auth/me` | Fetch authenticated user profile via Bearer token |
+| `PUT` | `/api/auth/profile` | Update profile goals, demographics, and activity level |
 
 Full API contracts, schemas, and request/response examples are documented in [`docs/api.md`](docs/api.md).
 
@@ -187,7 +192,7 @@ Open `http://localhost:3000` in your browser.
 
 ## Automated Testing
 
-The project includes 17 automated tests covering unit, ML pipeline, API validation, boundary edge cases, and SQL injection safety:
+The project includes 22 automated tests covering unit, ML pipeline, API validation, user authentication, boundary edge cases, and SQL injection safety:
 
 ```bash
 # Run full Pytest suite
@@ -224,10 +229,12 @@ docker-compose up --build
 
 ## Future Roadmap
 
-- **Phase 2**: User Authentication (JWT-based secure sessions) & multi-user profile switching.
-- **Phase 3**: CAESAR 3D Anthropometric Dataset integration for real-world empirical validation.
-- **Phase 4**: Privacy-preserving on-device computer vision pose estimation for automated circumference measurement via webcam.
-- **Phase 5**: Cross-platform mobile companion app with React Native.
+- [x] **Phase 1**: Core ML inference, recommendation engine, and interactive frontend.
+- [x] **Phase 2**: JWT User Authentication, password hashing, and user profile management.
+- [ ] **Phase 3**: CAESAR 3D Anthropometric Dataset integration for real-world empirical validation.
+- [ ] **Phase 4**: Privacy-preserving on-device computer vision pose estimation for automated circumference measurement via webcam.
+- [ ] **Phase 5**: Cross-platform mobile companion app with React Native.
+
 
 ---
 

@@ -1,6 +1,4 @@
-"""
-End-to-End Integration and Edge-Case Test Suite for BodyCurve Analyzer.
-Tests all 5 silhouette archetypes, SQLite injection safety, boundary values,
+"""Tests all 5 silhouette archetypes, SQL injection safety, boundary values,
 and end-to-end flow from inference to persistence and progress tracking.
 """
 
@@ -9,18 +7,21 @@ from backend.app import create_app
 
 @pytest.fixture
 def client(tmp_path):
-    test_db = str(tmp_path / "integration_bodycurve.db")
-    app = create_app({"TESTING": True})
-    
+    """Create test client with an isolated temporary SQLite database."""
     import backend.models.database as db_mod
+
+    test_db = str(tmp_path / "test_bodycurve.db")
     original_db_path = db_mod.DB_PATH
+
     db_mod.DB_PATH = test_db
-    db_mod.init_db(test_db)
 
-    with app.test_client() as client:
-        yield client
+    try:
+        app = create_app({"TESTING": True})
 
-    db_mod.DB_PATH = original_db_path
+        with app.test_client() as client:
+            yield client
+    finally:
+        db_mod.DB_PATH = original_db_path
 
 def test_all_five_body_shape_archetypes(client):
     """

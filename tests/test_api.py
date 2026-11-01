@@ -4,25 +4,23 @@ Covers validation, ML prediction endpoint, recommendations, and persistence CRUD
 """
 
 import pytest
-import json
 from backend.app import create_app
 
 @pytest.fixture
 def client(tmp_path):
     """Create test client with temporary SQLite database."""
-    test_db = str(tmp_path / "test_bodycurve.db")
-    app = create_app({"TESTING": True})
-    
-    # Override database path in module for isolated tests
     import backend.models.database as db_mod
+
+    test_db = str(tmp_path / "test_bodycurve.db")
     original_db_path = db_mod.DB_PATH
-    db_mod.DB_PATH = test_db
-    db_mod.init_db(test_db)
 
-    with app.test_client() as client:
-        yield client
+    try:
+        app = create_app({"TESTING": True})
 
-    db_mod.DB_PATH = original_db_path
+        with app.test_client() as client:
+            yield client
+    finally:
+        db_mod.DB_PATH = original_db_path
 
 def test_health_endpoint(client):
     """Verify health check endpoint returns 200 OK."""

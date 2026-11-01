@@ -18,7 +18,7 @@
   "training_samples": 2400,
   "test_samples": 600,
   "champion_metrics": {
-    "training_time_seconds": 0.0298,
+    "training_time_seconds": 0.067,
     "cv_f1_macro_mean": 0.9983,
     "cv_f1_macro_std": 0.0024,
     "test_accuracy": 0.995,
@@ -111,7 +111,7 @@
   },
   "all_benchmarks": {
     "Logistic Regression": {
-      "training_time_seconds": 0.0298,
+      "training_time_seconds": 0.067,
       "cv_f1_macro_mean": 0.9983,
       "cv_f1_macro_std": 0.0024,
       "test_accuracy": 0.995,
@@ -203,7 +203,7 @@
       }
     },
     "Decision Tree": {
-      "training_time_seconds": 0.0166,
+      "training_time_seconds": 0.0227,
       "cv_f1_macro_mean": 0.9896,
       "cv_f1_macro_std": 0.0039,
       "test_accuracy": 0.9917,
@@ -295,7 +295,7 @@
       }
     },
     "Random Forest": {
-      "training_time_seconds": 0.187,
+      "training_time_seconds": 0.2424,
       "cv_f1_macro_mean": 0.9967,
       "cv_f1_macro_std": 0.0021,
       "test_accuracy": 0.9933,
@@ -387,7 +387,7 @@
       }
     },
     "K-Nearest Neighbors": {
-      "training_time_seconds": 0.012,
+      "training_time_seconds": 0.0163,
       "cv_f1_macro_mean": 0.9967,
       "cv_f1_macro_std": 0.0028,
       "test_accuracy": 0.9917,

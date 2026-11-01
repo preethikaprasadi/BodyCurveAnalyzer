@@ -11,10 +11,10 @@
 
 | Model | Training Latency | 5-Fold CV F1 (Macro) | Test Accuracy | Test Precision (Macro) | Test Recall (Macro) | Test F1 (Macro) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Logistic Regression** **(Champion)** | 29.8 ms | 0.9983 (±0.002) | 99.50% | 0.9951 | 0.9950 | 0.9950 |
-| **Decision Tree** | 16.6 ms | 0.9896 (±0.004) | 99.17% | 0.9918 | 0.9917 | 0.9917 |
-| **Random Forest** | 187.0 ms | 0.9967 (±0.002) | 99.33% | 0.9935 | 0.9933 | 0.9934 |
-| **K-Nearest Neighbors** | 12.0 ms | 0.9967 (±0.003) | 99.17% | 0.9918 | 0.9917 | 0.9917 |
+| **Logistic Regression** **(Champion)** | 90.4 ms | 0.9983 (±0.002) | 99.50% | 0.9951 | 0.9950 | 0.9950 |
+| **Decision Tree** | 35.7 ms | 0.9896 (±0.004) | 99.17% | 0.9918 | 0.9917 | 0.9917 |
+| **Random Forest** | 258.8 ms | 0.9967 (±0.002) | 99.33% | 0.9935 | 0.9933 | 0.9934 |
+| **K-Nearest Neighbors** | 16.5 ms | 0.9967 (±0.003) | 99.17% | 0.9918 | 0.9917 | 0.9917 |
 
 ## 3. Champion Model Rationale: `Logistic Regression`
 

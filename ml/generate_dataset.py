@@ -205,7 +205,9 @@ def main():
     print("1. Generating synthetic female body measurements (3,000 samples)...")
     df_female = generate_female_dataset(n_samples_per_class=600, random_state=42)
     df_female.to_csv(female_path, index=False)
-    print(f"Saved female dataset to: {female_path}")
+    # Maintain body_measurements_dataset.csv as 3,000 sample female dataset for backward compatibility
+    df_female.to_csv(combined_path, index=False)
+    print(f"Saved female dataset to: {female_path} and {combined_path}")
     print(df_female["body_shape"].value_counts())
 
     print("\n2. Generating synthetic male body measurements (3,000 samples)...")
@@ -216,8 +218,8 @@ def main():
 
     print("\n3. Saving combined dataset (6,000 samples)...")
     df_combined = pd.concat([df_female, df_male], ignore_index=True)
-    df_combined.to_csv(combined_path, index=False)
-    print(f"Saved combined dataset to: {combined_path}")
+    df_combined.to_csv(os.path.join("ml", "data", "body_measurements_all.csv"), index=False)
+    print("Saved combined dataset to: ml/data/body_measurements_all.csv")
 
 if __name__ == "__main__":
     main()

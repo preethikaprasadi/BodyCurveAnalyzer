@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RecommendationsTabs from "@/components/RecommendationsTabs";
-import { RecommendationsData, FitnessGoal, ActivityLevel } from "@/types";
+import { RecommendationsData, FitnessGoal, ActivityLevel, Gender } from "@/types";
 import { getRecommendations } from "@/lib/api";
-import { Compass, Sparkles, Filter, Loader2 } from "lucide-react";
+import { Compass, Filter, Loader2, User } from "lucide-react";
 
-const BODY_SHAPES = [
+const FEMALE_SHAPES = [
   { id: "hourglass", label: "Hourglass" },
   { id: "rectangle", label: "Rectangle" },
   { id: "pear", label: "Pear / Triangle" },
@@ -16,7 +16,16 @@ const BODY_SHAPES = [
   { id: "apple", label: "Apple / Oval" },
 ];
 
+const MALE_SHAPES = [
+  { id: "trapezoid", label: "Trapezoid (Athletic)" },
+  { id: "inverted_triangle", label: "Inverted Triangle (V-Taper)" },
+  { id: "rectangle", label: "Rectangle (Straight)" },
+  { id: "triangle", label: "Triangle (A-Frame)" },
+  { id: "oval", label: "Oval (Round)" },
+];
+
 export default function RecommendationsPage() {
+  const [selectedGender, setSelectedGender] = useState<Gender>("female");
   const [selectedShape, setSelectedShape] = useState("hourglass");
   const [selectedGoal, setSelectedGoal] = useState<FitnessGoal>("maintain");
   const [selectedLevel, setSelectedLevel] = useState<ActivityLevel>("beginner");
@@ -24,21 +33,28 @@ export default function RecommendationsPage() {
   const [recommendations, setRecommendations] = useState<RecommendationsData | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const handleGenderChange = (gender: Gender) => {
+    setSelectedGender(gender);
+    setSelectedShape(gender === "male" ? "trapezoid" : "hourglass");
+  };
+
   const fetchGuidance = React.useCallback(async () => {
     setLoading(true);
     try {
-      const data = await getRecommendations(selectedShape, selectedGoal, selectedLevel);
+      const data = await getRecommendations(selectedShape, selectedGender, selectedGoal, selectedLevel);
       setRecommendations(data);
     } catch (e) {
       console.warn("Failed to fetch recommendations", e);
     } finally {
       setLoading(false);
     }
-  }, [selectedShape, selectedGoal, selectedLevel]);
+  }, [selectedShape, selectedGender, selectedGoal, selectedLevel]);
 
   useEffect(() => {
     fetchGuidance();
   }, [fetchGuidance]);
+
+  const activeShapes = selectedGender === "male" ? MALE_SHAPES : FEMALE_SHAPES;
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50/50">
@@ -55,25 +71,53 @@ export default function RecommendationsPage() {
             Comprehensive Proportion Guidance
           </h1>
           <p className="mt-1 text-sm text-slate-500">
-            Browse rule-based recommendations across silhouettes, goals, and training experience levels.
+            Browse tailored guidance for both gentlemen and ladies across silhouettes, goals, and training experience levels.
           </p>
         </div>
 
         {/* Filters Panel */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-5">
-          <div className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase tracking-wider">
-            <Filter className="w-3.5 h-3.5 text-teal-600" />
-            Customize Recommendation Parameters
+          <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 uppercase tracking-wider">
+              <Filter className="w-3.5 h-3.5 text-teal-600" />
+              Customize Recommendation Parameters
+            </div>
+
+            {/* Gender Switcher */}
+            <div className="inline-flex rounded-xl p-1 bg-slate-100 border border-slate-200 text-xs">
+              <button
+                type="button"
+                onClick={() => handleGenderChange("female")}
+                className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                  selectedGender === "female"
+                    ? "bg-white text-teal-700 shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                Ladies
+              </button>
+              <button
+                type="button"
+                onClick={() => handleGenderChange("male")}
+                className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                  selectedGender === "male"
+                    ? "bg-white text-teal-700 shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                Gents
+              </button>
+            </div>
           </div>
 
           <div className="space-y-4">
             {/* Body Shape Selector */}
             <div>
               <label className="block text-xs font-medium text-slate-500 mb-2">
-                Target Body Silhouette:
+                Target Body Silhouette ({selectedGender === "male" ? "Men's Shapes" : "Women's Shapes"}):
               </label>
               <div className="flex flex-wrap gap-2">
-                {BODY_SHAPES.map((shape) => (
+                {activeShapes.map((shape) => (
                   <button
                     key={shape.id}
                     type="button"
@@ -136,7 +180,7 @@ export default function RecommendationsPage() {
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs">
               <span className="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-1">
-                Summary for {recommendations.displayName}
+                Summary for {recommendations.displayName} ({selectedGender === "male" ? "Gents" : "Ladies"})
               </span>
               <p className="text-sm text-slate-600 leading-relaxed">
                 {recommendations.summary}

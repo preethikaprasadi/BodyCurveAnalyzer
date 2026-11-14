@@ -165,3 +165,39 @@ def test_measurement_crud_and_progress(client):
     # 5. Verify deleted
     get_res = client.get(f"/api/measurements/{created_id}")
     assert get_res.status_code == 404
+
+def test_analyze_male_body_shape(client):
+    """Verify POST /api/analyze with male gender returns male shape and recommendations."""
+    payload = {
+        "height": 178.0,
+        "weight": 76.0,
+        "shoulder": 45.0,
+        "bust": 104.0,  # Chest
+        "waist": 82.0,
+        "hip": 96.0,
+        "gender": "male",
+        "goal": "muscle_gain",
+        "activityLevel": "intermediate",
+    }
+    res = client.post("/api/analyze", json=payload)
+    assert res.status_code == 200
+    data = res.get_json()
+    assert data["success"] is True
+    assert data["analysis"]["gender"] == "male"
+    assert data["analysis"]["bodyShape"] in ["trapezoid", "inverted_triangle", "rectangle", "triangle", "oval"]
+    assert "chestWaistRatio" in data["analysis"]["proportions"]
+    assert data["recommendations"]["gender"] == "male"
+    assert "fashion" in data["recommendations"]
+
+def test_get_male_recommendations_endpoint(client):
+    """Verify GET /api/recommendations retrieves male specific guidance."""
+    res = client.get("/api/recommendations?bodyShape=trapezoid&gender=male&goal=maintain")
+    assert res.status_code == 200
+    data = res.get_json()
+    assert data["success"] is True
+    rec = data["data"]
+    assert rec["bodyShape"] == "trapezoid"
+    assert rec["gender"] == "male"
+    assert rec["displayName"] == "Trapezoid"
+    assert "fashion" in rec
+

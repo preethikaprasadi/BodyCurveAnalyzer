@@ -143,6 +143,10 @@ def init_db(db_path: Optional[str] = None):
                 ALTER TABLE users
                 ADD COLUMN IF NOT EXISTS gender TEXT DEFAULT ''
             """)
+            cursor.execute("""
+                ALTER TABLE measurements
+                ADD COLUMN IF NOT EXISTS gender TEXT DEFAULT 'female'
+            """)
 
         else:
             cursor.execute("""
@@ -162,6 +166,7 @@ def init_db(db_path: Optional[str] = None):
                     waist_hip_ratio REAL,
                     shoulder_hip_ratio REAL,
                     notes TEXT,
+                    gender TEXT DEFAULT 'female',
                     created_at TEXT DEFAULT CURRENT_TIMESTAMP
                 )
             """)
@@ -199,6 +204,13 @@ def init_db(db_path: Optional[str] = None):
                     "ALTER TABLE users ADD COLUMN gender TEXT DEFAULT ''"
                 )
 
+            cursor.execute("PRAGMA table_info(measurements)")
+            existing_meas_cols = [row[1] for row in cursor.fetchall()]
+            if "gender" not in existing_meas_cols:
+                cursor.execute(
+                    "ALTER TABLE measurements ADD COLUMN gender TEXT DEFAULT 'female'"
+                )
+
         conn.commit()
 
 
@@ -231,6 +243,7 @@ def save_measurement(
     whr = round(waist / hip, 3)
     shr = round(shoulder / hip, 3)
     notes = data.get("notes", "")
+    gender = str(data.get("gender", "female"))
 
     postgres = _use_postgres(db_path)
 
@@ -241,14 +254,14 @@ def save_measurement(
             INSERT INTO measurements (
                 user_id, date, height, weight, shoulder, bust, waist, hip,
                 body_shape, confidence, bmi, waist_hip_ratio,
-                shoulder_hip_ratio, notes
+                shoulder_hip_ratio, notes, gender
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
 
         params = (
             user_id, date_str, height, weight, shoulder, bust, waist, hip,
-            body_shape, confidence, bmi, whr, shr, notes
+            body_shape, confidence, bmi, whr, shr, notes, gender
         )
 
         if postgres:
@@ -276,6 +289,7 @@ def save_measurement(
         "waistHipRatio": whr,
         "shoulderHipRatio": shr,
         "notes": notes,
+        "gender": gender,
     }
 
 

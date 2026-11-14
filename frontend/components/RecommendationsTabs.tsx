@@ -207,18 +207,34 @@ export default function RecommendationsTabs({ recommendations }: Props) {
                 </ul>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                <h5 className="text-xs font-bold text-teal-700 uppercase tracking-wider mb-2">
-                  Dress Silhouettes
-                </h5>
-                <ul className="text-xs text-slate-700 space-y-1.5">
-                  {fashion.dresses.map((item, i) => (
-                    <li key={i} className="flex items-start gap-1.5">
-                      <span className="text-teal-600">✓</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {/* Suits for Men or Dresses for Women */}
+              {fashion.suits && fashion.suits.length > 0 ? (
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <h5 className="text-xs font-bold text-teal-700 uppercase tracking-wider mb-2">
+                    Suits & Tailoring
+                  </h5>
+                  <ul className="text-xs text-slate-700 space-y-1.5">
+                    {fashion.suits.map((item, i) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <span className="text-teal-600">✓</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : fashion.dresses && fashion.dresses.length > 0 ? (
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <h5 className="text-xs font-bold text-teal-700 uppercase tracking-wider mb-2">
+                    Dress Silhouettes
+                  </h5>
+                  <ul className="text-xs text-slate-700 space-y-1.5">
+                    {fashion.dresses.map((item, i) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <span className="text-teal-600">✓</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
 
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
                 <h5 className="text-xs font-bold text-teal-700 uppercase tracking-wider mb-2">

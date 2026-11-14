@@ -20,11 +20,20 @@ The objective of the BodyCurve Analyzer machine-learning component is multi-clas
 - **Bust-to-Hip Ratio (BHR)**: $\text{BHR} = \frac{\text{bust}}{\text{hip}}$
 
 ### Target Classes:
+
+#### Female Archetypes:
 1. `hourglass` — Balanced bust & hips with well-defined, significantly narrower waist.
 2. `rectangle` — Straight silhouette where bust, waist, and hips are relatively uniform.
 3. `pear` (Triangle) — Lower body dominance; hip circumference significantly exceeds bust and shoulder width.
 4. `inverted_triangle` — Upper body dominance; broad shoulders and fuller bust tapering to narrower hips.
 5. `apple` (Oval) — Central volume distribution; waist circumference approaches or exceeds bust/hip measurements.
+
+#### Male Archetypes:
+1. `trapezoid` — Athletic balanced silhouette; broad chest and shoulders with moderate, gentle taper to waist and hips.
+2. `inverted_triangle` — Dramatic V-taper / bodybuilder build; very broad chest/deltoids tapering to lean waist/hips ($CWR \ge 1.28$).
+3. `rectangle` — Straight athletic build; chest, waist, and hips follow an even line with minimal taper.
+4. `triangle` (A-Frame) — Lower torso dominance; waist and hips wider than chest and shoulders.
+5. `oval` (Round) — Central volume distribution around the abdomen/midsection ($WHR \ge 0.98$).
 
 ---
 

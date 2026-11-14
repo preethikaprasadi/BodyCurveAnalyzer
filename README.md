@@ -6,7 +6,9 @@
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue.svg)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8.svg)](https://tailwindcss.com/)
-[![Tests](https://img.shields.io/badge/Tests-22%20Passed-emerald.svg)](https://docs.pytest.org/)
+[![Tests](https://img.shields.io/badge/Tests-26%20Passed-emerald.svg)](https://docs.pytest.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supabase-3ecf8e.svg)](https://supabase.com/)
+[![Deployed Backend](https://img.shields.io/badge/Render-Live-46e3b7.svg)](https://bodycurve-backend.onrender.com)
 
 > **An end-to-end, AI/ML-assisted full-stack platform for anatomical body proportion analysis, silhouette classification, and personalized wellness and style guidance.**
 
@@ -16,19 +18,22 @@
 
 Most fitness and fashion recommendations rely on generic height-weight charts or arbitrary sizing that ignore individual skeletal proportions. **BodyCurve Analyzer** bridges this gap by providing an explainable, data-driven system where users input body circumferences, receive an ML-assisted body shape classification with calibrated probabilities, inspect key biomechanical ratios, and access tailored non-medical guidance.
 
-The application is engineered from the ground up to be **lightweight, resource-efficient, and CPU-friendly**, allowing full local execution with zero background daemons.
+The application is engineered from the ground up to be **lightweight, resource-efficient, and CPU-friendly**, supporting both local execution and scalable cloud deployment with managed PostgreSQL.
 
 ---
 
 ## Key Features
 
-- **ML-Assisted Classification**: Categorizes silhouettes into 5 primary archetypes (*Hourglass*, *Rectangle*, *Pear / Triangle*, *Inverted Triangle*, *Apple / Oval*) with confidence scoring.
-- **Biomechanical Ratio Engine**: Automatically extracts Body Mass Index (BMI), Waist-to-Hip Ratio (WHR), Shoulder-to-Hip Ratio (SHR), and Waist-to-Bust Ratio (WBR).
-- **Rule-Based Recommendation Engine**: Tailors fitness routines, non-medical nutritional habits, posture cues, and flattering garment silhouettes based on shape, goal, and experience level.
+- **Gender-Specific ML Classification**: Dedicated models tailored for both cohorts:
+  - **Ladies Archetypes**: *Hourglass*, *Rectangle*, *Pear / Triangle*, *Inverted Triangle*, *Apple / Oval*.
+  - **Gents Archetypes**: *Trapezoid* (Athletic Taper), *Inverted Triangle* (V-Taper), *Rectangle* (Straight), *Triangle* (A-Frame), *Oval* (Center-Heavy).
+- **Dual Unit Measurement Engine**: Seamlessly enter and view measurements in **Metric** (`cm`, `kg`) or **Imperial** (`ft'in"`, `in`, `lbs`) with real-time bidirectional conversion.
+- **Biomechanical Ratio Engine**: Automatically extracts Body Mass Index (BMI), Waist-to-Hip Ratio (WHR), Shoulder-to-Hip Ratio (SHR), Waist-to-Bust Ratio (WBR), and Chest-to-Waist Ratio (CWR - Adonis V-Taper Index).
+- **Tailored Multi-Gender Recommendation Engine**: Gender-specific guidance spanning menswear tailoring (suits, blazers, trousers) and womenswear silhouettes (dresses, wrap tops, skirts), plus personalized fitness and hormonal/wellness habits.
 - **Progress Tracking**: Tracks body changes over time with interactive **Recharts** time-series graphs and historical measurement logs.
 - **User Authentication & Profile**: Secure JWT-based authentication with bcrypt password hashing and persistent user preferences.
-- **Zero-Daemon Local Persistence**: Thread-safe SQLite persistence with parameterized SQL queries ensuring complete injection protection.
-- **Production-Ready**: Multi-stage Dockerfiles, Docker Compose, WSGI entrypoint, and Procfile for cloud deployment.
+- **Dual Database Architecture**: Zero-daemon local SQLite for local development/testing and managed PostgreSQL (Supabase) for production.
+- **Cloud-Deployed**: Backend deployed to Render (`https://bodycurve-backend.onrender.com`), frontend deployed to Vercel.
 
 ---
 
@@ -120,8 +125,8 @@ All candidate models were benchmarked on CPU using **Stratified 5-Fold Cross-Val
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `GET` | `/api/health` | Health status and version check |
-| `POST` | `/api/analyze` | Validate measurements, run ML classification, generate recommendations, auto-save |
-| `GET` | `/api/recommendations` | Retrieve rule-based guidance matrix by shape, goal, and activity level |
+| `POST` | `/api/analyze` | Validate measurements, run ML classification (gender-aware), generate recommendations, auto-save |
+| `GET` | `/api/recommendations` | Retrieve rule-based guidance matrix by shape, gender, goal, and activity level |
 | `POST` | `/api/measurements` | Create a historical measurement log |
 | `GET` | `/api/measurements` | List past measurement records |
 | `DELETE` | `/api/measurements/:id` | Delete a specific measurement record |

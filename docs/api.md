@@ -36,6 +36,7 @@ Validates input measurements, executes Scikit-learn inference, generates recomme
 | `bust` | `float` | Yes | 40.0 - 200.0 | Fullest chest circumference in cm |
 | `waist` | `float` | Yes | 30.0 - 200.0 | Natural waist circumference in cm |
 | `hip` | `float` | Yes | 40.0 - 220.0 | Widest hip circumference in cm |
+| `gender` | `string` | No | `female`, `male` | Silhouette cohort (default: `female`) |
 | `goal` | `string` | No | `maintain`, `muscle_gain`, `fat_loss`, `mobility` | Fitness goal |
 | `activityLevel` | `string` | No | `beginner`, `intermediate`, `advanced` | Experience level |
 | `saveRecord` | `boolean`| No | `true`, `false` | Whether to persist in SQLite |
@@ -127,12 +128,15 @@ Validates input measurements, executes Scikit-learn inference, generates recomme
 Query tailored recommendations without running an inference analysis.
 
 #### Query Parameters:
-- `bodyShape` (optional, default: `hourglass`): `hourglass`, `rectangle`, `pear`, `inverted_triangle`, `apple`
+- `bodyShape` (optional, default: `hourglass`):
+  - Female shapes: `hourglass`, `rectangle`, `pear`, `inverted_triangle`, `apple`
+  - Male shapes: `trapezoid`, `inverted_triangle`, `rectangle`, `triangle`, `oval`
+- `gender` (optional, default: `female`): `female`, `male`
 - `goal` (optional, default: `maintain`): `maintain`, `muscle_gain`, `fat_loss`, `mobility`
 - `activityLevel` (optional, default: `beginner`): `beginner`, `intermediate`, `advanced`
 
 #### Example Request:
-`GET /api/recommendations?bodyShape=pear&goal=muscle_gain&activityLevel=intermediate`
+`GET /api/recommendations?bodyShape=trapezoid&gender=male&goal=muscle_gain&activityLevel=intermediate`
 
 ---
 

@@ -9,8 +9,52 @@ interface Props {
 }
 
 export default function ProportionsGrid({ proportions }: Props) {
-  const { bmi, bmiCategory, waistHipRatio, shoulderHipRatio, waistBustRatio, bustHipRatio } =
-    proportions;
+  const {
+    bmi,
+    bmiCategory,
+    waistHipRatio,
+    waistHipCategory,
+    shoulderHipRatio,
+    waistBustRatio,
+    chestWaistRatio,
+    gender,
+  } = proportions;
+
+  const isMale = gender === "male";
+
+  // Gender-specific WHR badge
+  const whrBadge =
+    waistHipCategory ||
+    (isMale
+      ? waistHipRatio <= 0.88
+        ? "Athletic V-Taper"
+        : waistHipRatio <= 0.92
+        ? "Optimal Male WHR"
+        : "Straight Build"
+      : waistHipRatio <= 0.75
+      ? "Defined Waist"
+      : "Balanced Contour");
+
+  // Fourth card: Chest-to-Waist (CWR / Adonis Index) for men vs Waist-to-Bust for women
+  const fourthCard = isMale
+    ? {
+        title: "Chest-to-Waist Ratio (CWR)",
+        value: (chestWaistRatio || (waistBustRatio > 0 ? 1 / waistBustRatio : 1.25)).toFixed(3),
+        unit: "ratio",
+        badge: (chestWaistRatio || 1.25) >= 1.22 ? "Pronounced V-Taper" : "Athletic Taper",
+        badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
+        description: "Adonis V-taper index: compares chest breadth against waist.",
+        icon: TrendingUp,
+      }
+    : {
+        title: "Waist-to-Bust Ratio (WBR)",
+        value: waistBustRatio.toFixed(3),
+        unit: "ratio",
+        badge: waistBustRatio <= 0.75 ? "Hourglass Taper" : "Balanced Torso",
+        badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
+        description: "Evaluates upper torso taper from bust line to waist.",
+        icon: TrendingUp,
+      };
 
   const cards = [
     {
@@ -19,45 +63,46 @@ export default function ProportionsGrid({ proportions }: Props) {
       unit: "kg/m²",
       badge: bmiCategory,
       badgeColor:
-        bmiCategory === "Normal weight"
+        bmiCategory.includes("Normal")
           ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+          : bmiCategory.includes("Muscular")
+          ? "bg-blue-50 text-blue-700 border-blue-200"
           : "bg-amber-50 text-amber-700 border-amber-200",
-      description: "Standard body mass indicator based on height and weight.",
+      description: isMale
+        ? "Height-to-weight index; muscular frames often carry higher healthy BMI."
+        : "Standard body mass indicator based on stature and weight.",
       icon: Scale,
     },
     {
       title: "Waist-to-Hip Ratio (WHR)",
       value: waistHipRatio.toFixed(3),
       unit: "ratio",
-      badge: waistHipRatio <= 0.75 ? "Defined Waist" : "Even Proportion",
+      badge: whrBadge,
       badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
-      description: "Key metric for torso curvature and lower-body contouring.",
+      description: isMale
+        ? "WHO male benchmark: <= 0.90 indicates low visceral health risk."
+        : "Key metric for female torso curvature and hip contouring.",
       icon: Ruler,
     },
     {
       title: "Shoulder-to-Hip Ratio (SHR)",
       value: shoulderHipRatio.toFixed(3),
       unit: "ratio",
-      badge: shoulderHipRatio > 0.45 ? "Broad Shoulders" : "Balanced Frame",
+      badge:
+        shoulderHipRatio > (isMale ? 0.46 : 0.42)
+          ? "Broad Shoulders"
+          : "Balanced Frame",
       badgeColor: "bg-blue-50 text-blue-700 border-blue-200",
       description: "Compares biacromial shoulder breadth against hip width.",
       icon: Compass,
     },
-    {
-      title: "Waist-to-Bust Ratio (WBR)",
-      value: waistBustRatio.toFixed(3),
-      unit: "ratio",
-      badge: waistBustRatio <= 0.75 ? "Hourglass Taper" : "Balanced Torso",
-      badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
-      description: "Evaluates upper torso taper from bust line to waist.",
-      icon: TrendingUp,
-    },
+    fourthCard,
   ];
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
       <h3 className="text-lg font-bold text-slate-900 mb-1">
-        Key Anthropometric Ratios
+        Key Anthropometric Ratios ({isMale ? "Men's Analysis" : "Women's Analysis"})
       </h3>
       <p className="text-xs text-slate-500 mb-5">
         Biomechanical metrics derived from your measurements that guide ML classification.

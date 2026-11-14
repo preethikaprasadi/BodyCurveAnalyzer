@@ -60,13 +60,14 @@ class FeatureEngineer(BaseEstimator, TransformerMixin):
         # Ensure consistent column ordering
         return df[ALL_FEATURES].values
 
-def calculate_proportions(measurements: Dict[str, float]) -> Dict[str, Any]:
+def calculate_proportions(measurements: Dict[str, float], gender: str = "female") -> Dict[str, Any]:
     """
     Calculate anthropometric proportions and indices for a single user record.
     Used by the API to provide model explainability.
     
     Args:
         measurements: Dict with keys 'height', 'weight', 'shoulder', 'bust', 'waist', 'hip'.
+        gender: 'female' or 'male' (default: 'female')
         
     Returns:
         Dict with computed indices rounded for user display.
@@ -77,6 +78,7 @@ def calculate_proportions(measurements: Dict[str, float]) -> Dict[str, Any]:
     bust = float(measurements["bust"])
     waist = float(measurements["waist"])
     hip = float(measurements["hip"])
+    is_male = str(gender).lower().strip() == "male"
 
     height_m = height / 100.0
     bmi = weight / (height_m ** 2)
@@ -84,22 +86,46 @@ def calculate_proportions(measurements: Dict[str, float]) -> Dict[str, Any]:
     shr = shoulder / hip
     wbr = waist / bust
     bhr = bust / hip
+    cwr = bust / waist  # Chest-to-Waist ratio (key metric for men)
 
-    # Determine standard BMI category
+    # Determine gender-specific BMI interpretations and categories
     if bmi < 18.5:
         bmi_category = "Underweight"
     elif bmi < 24.9:
         bmi_category = "Normal weight"
     elif bmi < 29.9:
-        bmi_category = "Overweight"
+        bmi_category = "Overweight (Muscular Frame)" if is_male else "Overweight"
     else:
         bmi_category = "Obesity"
+
+    # Gender-specific WHR assessment based on WHO standards
+    if is_male:
+        if whr < 0.85:
+            whr_category = "Athletic V-Taper"
+        elif whr <= 0.90:
+            whr_category = "Optimal Male Proportion"
+        elif whr <= 0.95:
+            whr_category = "Moderate Risk / Straight"
+        else:
+            whr_category = "Elevated Central Adiposity"
+    else:
+        if whr <= 0.75:
+            whr_category = "Defined Waist / Hourglass"
+        elif whr <= 0.80:
+            whr_category = "Healthy Female Proportion"
+        elif whr <= 0.85:
+            whr_category = "Moderate Waist Definition"
+        else:
+            whr_category = "Elevated Central Adiposity"
 
     return {
         "bmi": round(bmi, 2),
         "bmiCategory": bmi_category,
         "waistHipRatio": round(whr, 3),
+        "waistHipCategory": whr_category,
         "shoulderHipRatio": round(shr, 3),
         "waistBustRatio": round(wbr, 3),
         "bustHipRatio": round(bhr, 3),
+        "chestWaistRatio": round(cwr, 3),
+        "gender": "male" if is_male else "female",
     }

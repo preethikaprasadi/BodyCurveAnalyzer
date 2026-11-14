@@ -33,22 +33,27 @@ def analyze_body_measurements():
             "details": errors
         }), 400
 
-    # 2. ML Inference
+    # 2. ML Inference with Gender Support
+    gender = str(data.get("gender", "female")).lower().strip()
+    if gender not in ["female", "male"]:
+        gender = "female"
+
     try:
         ml_service = get_ml_service()
-        prediction_result = ml_service.predict(parsed_measurements)
+        prediction_result = ml_service.predict(parsed_measurements, gender=gender)
     except Exception as e:
         return jsonify({
             "success": False,
             "error": f"ML Inference failed: {str(e)}"
         }), 500
 
-    # 3. Recommendation Generation
+    # 3. Recommendation Generation with Gender Support
     goal = data.get("goal", "maintain")
     activity_level = data.get("activityLevel", "beginner")
 
     recommendations = RecommendationService.get_recommendations(
         body_shape=prediction_result["bodyShape"],
+        gender=gender,
         goal=goal,
         activity_level=activity_level
     )
@@ -62,6 +67,7 @@ def analyze_body_measurements():
                 "bodyShape": prediction_result["bodyShape"],
                 "confidence": prediction_result["confidence"],
                 "userId": data.get("userId", "guest"),
+                "gender": gender,
                 "date": data.get("date"),
                 "notes": data.get("notes", "")
             }

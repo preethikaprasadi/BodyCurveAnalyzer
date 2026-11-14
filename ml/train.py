@@ -1,14 +1,14 @@
 """
 Machine learning training and benchmarking pipeline for BodyCurve Analyzer.
 
-Trains and evaluates 4 lightweight classifiers:
+Trains and evaluates 4 lightweight classifiers for both female and male cohorts:
 1. Logistic Regression
 2. Decision Tree
 3. Random Forest
 4. K-Nearest Neighbors
 
 Performs Stratified 5-Fold Cross-Validation, evaluates on holdout test set,
-and packages the best performing pipeline with Scikit-learn FeatureEngineer and StandardScaler.
+and packages the best performing pipelines with Scikit-learn FeatureEngineer and StandardScaler.
 """
 
 import os
@@ -43,7 +43,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from ml.preprocessing import FeatureEngineer, RAW_FEATURES
 
 def benchmark_models(
-    dataset_path: str = "ml/data/body_measurements_dataset.csv",
+    dataset_path: str = "ml/data/body_measurements_female.csv",
+    output_suffix: str = "female",
     random_state: int = 42
 ) -> Dict[str, Any]:
     """
@@ -52,7 +53,11 @@ def benchmark_models(
     if not os.path.exists(dataset_path):
         raise FileNotFoundError(f"Dataset not found at: {dataset_path}. Please run generate_dataset.py first.")
 
+    print(f"\n{'='*80}")
+    print(f"BENCHMARKING PIPELINE: {output_suffix.upper()} COHORT")
     print(f"Loading dataset from: {dataset_path}")
+    print(f"{'='*80}")
+
     df = pd.read_csv(dataset_path)
 
     X = df[RAW_FEATURES]
@@ -81,9 +86,8 @@ def benchmark_models(
     best_f1_score = -1.0
     best_pipeline = None
 
-    print("\n" + "=" * 80)
     print(f"{'Model':<22} | {'Train Time':<10} | {'CV F1 (std)':<14} | {'Test Acc':<9} | {'Macro F1':<9}")
-    print("=" * 80)
+    print("-" * 80)
 
     for name, clf in candidate_models.items():
         # Build end-to-end pipeline
@@ -135,21 +139,28 @@ def benchmark_models(
             best_model_name = name
             best_pipeline = pipe
 
-    print("=" * 80)
-    print(f"\nChampion Model Selected: {best_model_name} (CV Macro F1: {best_f1_score:.4f})")
+    print("-" * 80)
+    print(f"Champion Model for {output_suffix.upper()}: {best_model_name} (CV Macro F1: {best_f1_score:.4f})")
 
     # Serialize champion pipeline and metadata
     os.makedirs("ml", exist_ok=True)
     os.makedirs("backend/ml", exist_ok=True)
 
-    champion_path_ml = os.path.join("ml", "pipeline.pkl")
-    champion_path_backend = os.path.join("backend", "ml", "pipeline.pkl")
+    champion_path_ml = os.path.join("ml", f"pipeline_{output_suffix}.pkl")
+    champion_path_backend = os.path.join("backend", "ml", f"pipeline_{output_suffix}.pkl")
 
     joblib.dump(best_pipeline, champion_path_ml)
     joblib.dump(best_pipeline, champion_path_backend)
+
+    # Also save as default pipeline.pkl if female (for backward compatibility)
+    if output_suffix == "female":
+        joblib.dump(best_pipeline, os.path.join("ml", "pipeline.pkl"))
+        joblib.dump(best_pipeline, os.path.join("backend", "ml", "pipeline.pkl"))
+
     print(f"Serialized pipeline saved to:\n  - {champion_path_ml}\n  - {champion_path_backend}")
 
     metadata = {
+        "gender": output_suffix,
         "champion_model": best_model_name,
         "classes": classes,
         "raw_features": RAW_FEATURES,
@@ -159,14 +170,31 @@ def benchmark_models(
         "all_benchmarks": results,
     }
 
-    with open("ml/benchmark_results.json", "w") as f:
+    with open(f"ml/benchmark_results_{output_suffix}.json", "w") as f:
         json.dump(metadata, f, indent=2)
 
-    with open("backend/ml/metadata.json", "w") as f:
+    with open(f"backend/ml/metadata_{output_suffix}.json", "w") as f:
         json.dump(metadata, f, indent=2)
 
-    print("Benchmark results written to ml/benchmark_results.json and backend/ml/metadata.json")
+    if output_suffix == "female":
+        with open("ml/benchmark_results.json", "w") as f:
+            json.dump(metadata, f, indent=2)
+        with open("backend/ml/metadata.json", "w") as f:
+            json.dump(metadata, f, indent=2)
+
     return metadata
 
+def main():
+    # 1. Train Female Pipeline
+    female_dataset = "ml/data/body_measurements_female.csv"
+    if not os.path.exists(female_dataset):
+        female_dataset = "ml/data/body_measurements_dataset.csv"
+    benchmark_models(dataset_path=female_dataset, output_suffix="female")
+
+    # 2. Train Male Pipeline
+    male_dataset = "ml/data/body_measurements_male.csv"
+    if os.path.exists(male_dataset):
+        benchmark_models(dataset_path=male_dataset, output_suffix="male")
+
 if __name__ == "__main__":
-    benchmark_models()
+    main()

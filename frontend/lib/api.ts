@@ -60,15 +60,17 @@ export async function analyzeBody(data: MeasurementInput): Promise<AnalyzeRespon
 }
 
 /**
- * Query tailored recommendations for a body shape and user profile.
+ * Query tailored recommendations for a body shape, gender, and user profile.
  */
 export async function getRecommendations(
   bodyShape: string,
+  gender: string = "female",
   goal: string = "maintain",
   activityLevel: string = "beginner"
 ): Promise<RecommendationsData> {
   const query = new URLSearchParams({
     bodyShape,
+    gender,
     goal,
     activityLevel,
   });

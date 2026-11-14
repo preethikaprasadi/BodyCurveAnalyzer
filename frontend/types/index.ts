@@ -1,4 +1,9 @@
-export type BodyShapeType = "hourglass" | "rectangle" | "pear" | "inverted_triangle" | "apple";
+export type FemaleBodyShape = "hourglass" | "rectangle" | "pear" | "inverted_triangle" | "apple";
+export type MaleBodyShape = "trapezoid" | "inverted_triangle" | "rectangle" | "triangle" | "oval";
+export type BodyShapeType = FemaleBodyShape | MaleBodyShape;
+
+export type Gender = "female" | "male" | "other";
+export type UnitSystem = "metric" | "imperial";
 
 export type FitnessGoal = "maintain" | "muscle_gain" | "fat_loss" | "mobility";
 
@@ -11,6 +16,8 @@ export interface MeasurementInput {
   bust: number;
   waist: number;
   hip: number;
+  gender?: Gender;
+  unitSystem?: UnitSystem;
   goal?: FitnessGoal;
   activityLevel?: ActivityLevel;
   userId?: string;
@@ -23,9 +30,12 @@ export interface Proportions {
   bmi: number;
   bmiCategory: string;
   waistHipRatio: number;
+  waistHipCategory?: string;
   shoulderHipRatio: number;
   waistBustRatio: number;
   bustHipRatio: number;
+  chestWaistRatio?: number;
+  gender?: string;
 }
 
 export interface AnalysisResult {
@@ -35,6 +45,7 @@ export interface AnalysisResult {
   confidence: number;
   probabilities: Record<string, number>;
   proportions: Proportions;
+  gender?: string;
   modelUsed: string;
 }
 
@@ -66,7 +77,8 @@ export interface WellnessRecommendations {
 export interface FashionRecommendations {
   tops: string[];
   bottoms: string[];
-  dresses: string[];
+  dresses?: string[];
+  suits?: string[];
   outerwear: string[];
   stylingTips: string[];
   avoid: string[];
@@ -74,6 +86,7 @@ export interface FashionRecommendations {
 
 export interface RecommendationsData {
   bodyShape: BodyShapeType;
+  gender?: string;
   displayName: string;
   summary: string;
   goalCustomization: GoalCustomization;

@@ -1,0 +1,483 @@
+{
+  "gender": "female",
+  "champion_model": "Logistic Regression",
+  "classes": [
+    "apple",
+    "hourglass",
+    "inverted_triangle",
+    "pear",
+    "rectangle"
+  ],
+  "raw_features": [
+    "height",
+    "weight",
+    "shoulder",
+    "bust",
+    "waist",
+    "hip"
+  ],
+  "training_samples": 2400,
+  "test_samples": 600,
+  "champion_metrics": {
+    "training_time_seconds": 0.0489,
+    "cv_f1_macro_mean": 0.9983,
+    "cv_f1_macro_std": 0.0024,
+    "test_accuracy": 0.995,
+    "test_precision_macro": 0.9951,
+    "test_recall_macro": 0.995,
+    "test_f1_macro": 0.995,
+    "test_f1_weighted": 0.995,
+    "confusion_matrix": [
+      [
+        117,
+        0,
+        0,
+        0,
+        3
+      ],
+      [
+        0,
+        120,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        120,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        120
+      ]
+    ],
+    "classification_report": {
+      "apple": {
+        "precision": 1.0,
+        "recall": 0.975,
+        "f1-score": 0.9873417721518988,
+        "support": 120.0
+      },
+      "hourglass": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "inverted_triangle": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "pear": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 120.0
+      },
+      "rectangle": {
+        "precision": 0.975609756097561,
+        "recall": 1.0,
+        "f1-score": 0.9876543209876543,
+        "support": 120.0
+      },
+      "accuracy": 0.995,
+      "macro avg": {
+        "precision": 0.9951219512195122,
+        "recall": 0.9949999999999999,
+        "f1-score": 0.9949992186279106,
+        "support": 600.0
+      },
+      "weighted avg": {
+        "precision": 0.9951219512195121,
+        "recall": 0.995,
+        "f1-score": 0.9949992186279106,
+        "support": 600.0
+      }
+    }
+  },
+  "all_benchmarks": {
+    "Logistic Regression": {
+      "training_time_seconds": 0.0489,
+      "cv_f1_macro_mean": 0.9983,
+      "cv_f1_macro_std": 0.0024,
+      "test_accuracy": 0.995,
+      "test_precision_macro": 0.9951,
+      "test_recall_macro": 0.995,
+      "test_f1_macro": 0.995,
+      "test_f1_weighted": 0.995,
+      "confusion_matrix": [
+        [
+          117,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          0,
+          120,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          120,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          120
+        ]
+      ],
+      "classification_report": {
+        "apple": {
+          "precision": 1.0,
+          "recall": 0.975,
+          "f1-score": 0.9873417721518988,
+          "support": 120.0
+        },
+        "hourglass": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 120.0
+        },
+        "inverted_triangle": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 120.0
+        },
+        "pear": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 120.0
+        },
+        "rectangle": {
+          "precision": 0.975609756097561,
+          "recall": 1.0,
+          "f1-score": 0.9876543209876543,
+          "support": 120.0
+        },
+        "accuracy": 0.995,
+        "macro avg": {
+          "precision": 0.9951219512195122,
+          "recall": 0.9949999999999999,
+          "f1-score": 0.9949992186279106,
+          "support": 600.0
+        },
+        "weighted avg": {
+          "precision": 0.9951219512195121,
+          "recall": 0.995,
+          "f1-score": 0.9949992186279106,
+          "support": 600.0
+        }
+      }
+    },
+    "Decision Tree": {
+      "training_time_seconds": 0.0183,
+      "cv_f1_macro_mean": 0.9908,
+      "cv_f1_macro_std": 0.0036,
+      "test_accuracy": 0.9817,
+      "test_precision_macro": 0.9824,
+      "test_recall_macro": 0.9817,
+      "test_f1_macro": 0.9817,
+      "test_f1_weighted": 0.9817,
+      "confusion_matrix": [
+        [
+          114,
+          0,
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          119,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          117,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          119
+        ]
+      ],
+      "classification_report": {
+        "apple": {
+          "precision": 1.0,
+          "recall": 0.95,
+          "f1-score": 0.9743589743589743,
+          "support": 120.0
+        },
+        "hourglass": {
+          "precision": 0.9916666666666667,
+          "recall": 0.9916666666666667,
+          "f1-score": 0.9916666666666667,
+          "support": 120.0
+        },
+        "inverted_triangle": {
+          "precision": 0.9915254237288136,
+          "recall": 0.975,
+          "f1-score": 0.9831932773109243,
+          "support": 120.0
+        },
+        "pear": {
+          "precision": 0.9917355371900827,
+          "recall": 1.0,
+          "f1-score": 0.995850622406639,
+          "support": 120.0
+        },
+        "rectangle": {
+          "precision": 0.937007874015748,
+          "recall": 0.9916666666666667,
+          "f1-score": 0.9635627530364372,
+          "support": 120.0
+        },
+        "accuracy": 0.9816666666666667,
+        "macro avg": {
+          "precision": 0.9823871003202622,
+          "recall": 0.9816666666666667,
+          "f1-score": 0.9817264587559282,
+          "support": 600.0
+        },
+        "weighted avg": {
+          "precision": 0.9823871003202621,
+          "recall": 0.9816666666666667,
+          "f1-score": 0.9817264587559282,
+          "support": 600.0
+        }
+      }
+    },
+    "Random Forest": {
+      "training_time_seconds": 0.1747,
+      "cv_f1_macro_mean": 0.9962,
+      "cv_f1_macro_std": 0.002,
+      "test_accuracy": 0.995,
+      "test_precision_macro": 0.9951,
+      "test_recall_macro": 0.995,
+      "test_f1_macro": 0.995,
+      "test_f1_weighted": 0.995,
+      "confusion_matrix": [
+        [
+          118,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          120,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          119,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          120
+        ]
+      ],
+      "classification_report": {
+        "apple": {
+          "precision": 1.0,
+          "recall": 0.9833333333333333,
+          "f1-score": 0.9915966386554622,
+          "support": 120.0
+        },
+        "hourglass": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 120.0
+        },
+        "inverted_triangle": {
+          "precision": 1.0,
+          "recall": 0.9916666666666667,
+          "f1-score": 0.99581589958159,
+          "support": 120.0
+        },
+        "pear": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 120.0
+        },
+        "rectangle": {
+          "precision": 0.975609756097561,
+          "recall": 1.0,
+          "f1-score": 0.9876543209876543,
+          "support": 120.0
+        },
+        "accuracy": 0.995,
+        "macro avg": {
+          "precision": 0.9951219512195122,
+          "recall": 0.9949999999999999,
+          "f1-score": 0.9950133718449413,
+          "support": 600.0
+        },
+        "weighted avg": {
+          "precision": 0.9951219512195121,
+          "recall": 0.995,
+          "f1-score": 0.9950133718449412,
+          "support": 600.0
+        }
+      }
+    },
+    "K-Nearest Neighbors": {
+      "training_time_seconds": 0.0157,
+      "cv_f1_macro_mean": 0.9962,
+      "cv_f1_macro_std": 0.0031,
+      "test_accuracy": 0.99,
+      "test_precision_macro": 0.9901,
+      "test_recall_macro": 0.99,
+      "test_f1_macro": 0.99,
+      "test_f1_weighted": 0.99,
+      "confusion_matrix": [
+        [
+          116,
+          0,
+          0,
+          0,
+          4
+        ],
+        [
+          0,
+          120,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          120,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          118
+        ]
+      ],
+      "classification_report": {
+        "apple": {
+          "precision": 0.9914529914529915,
+          "recall": 0.9666666666666667,
+          "f1-score": 0.9789029535864979,
+          "support": 120.0
+        },
+        "hourglass": {
+          "precision": 0.9917355371900827,
+          "recall": 1.0,
+          "f1-score": 0.995850622406639,
+          "support": 120.0
+        },
+        "inverted_triangle": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 120.0
+        },
+        "pear": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 120.0
+        },
+        "rectangle": {
+          "precision": 0.9672131147540983,
+          "recall": 0.9833333333333333,
+          "f1-score": 0.9752066115702479,
+          "support": 120.0
+        },
+        "accuracy": 0.99,
+        "macro avg": {
+          "precision": 0.9900803286794346,
+          "recall": 0.99,
+          "f1-score": 0.9899920375126771,
+          "support": 600.0
+        },
+        "weighted avg": {
+          "precision": 0.9900803286794345,
+          "recall": 0.99,
+          "f1-score": 0.989992037512677,
+          "support": 600.0
+        }
+      }
+    }
+  }
+}

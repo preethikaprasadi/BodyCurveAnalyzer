@@ -60,17 +60,29 @@ class RecommendationService:
     def get_recommendations(
         cls,
         body_shape: str,
+        gender: str = "female",
         goal: str = "maintain",
         activity_level: str = "beginner"
     ) -> Dict[str, Any]:
         """
-        Retrieve recommendations customized by shape, fitness goal, and activity level.
+        Retrieve recommendations customized by shape, gender, fitness goal, and activity level.
         """
         data = cls._load_data()
         normalized_shape = str(body_shape).lower().strip()
+        is_male = str(gender).lower().strip() == "male"
+        gender_key = "male" if is_male else "female"
 
-        # Fallback to hourglass if shape not found
-        shape_data = data.get(normalized_shape, data.get("hourglass"))
+        # Check if recommendations are nested by gender
+        if "female" in data and "male" in data:
+            gender_data = data.get(gender_key, {})
+            fallback_shape = "trapezoid" if is_male else "hourglass"
+            shape_data = gender_data.get(normalized_shape)
+            if not shape_data:
+                # Fallback to default shape within gender, or check opposite gender
+                shape_data = gender_data.get(fallback_shape, data.get("female", {}).get(normalized_shape, {}))
+        else:
+            # Flat dictionary fallback
+            shape_data = data.get(normalized_shape, data.get("hourglass", {}))
 
         goal_key = str(goal).lower().strip()
         goal_info = GOAL_MODIFIERS.get(goal_key, GOAL_MODIFIERS["maintain"])
@@ -81,6 +93,7 @@ class RecommendationService:
         # Deep copy structure
         rec = {
             "bodyShape": normalized_shape,
+            "gender": gender_key,
             "displayName": shape_data.get("displayName", normalized_shape.title()),
             "summary": shape_data.get("summary", ""),
             "goalCustomization": {

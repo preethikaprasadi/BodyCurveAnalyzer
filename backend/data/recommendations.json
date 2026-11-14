@@ -1,197 +1,401 @@
 {
-  "hourglass": {
-    "displayName": "Hourglass",
-    "summary": "Proportions are naturally balanced with a defined waist. Focus on maintaining symmetry, core stability, and highlighting your natural waistline.",
-    "fitness": {
-      "focus": "Total-body symmetry and core stability to support spinal alignment and natural curves.",
-      "exercises": [
-        "Goblet squats for quadriceps and glute strength",
-        "Dumbbell overhead presses to maintain upper-body posture",
-        "Romanian deadlifts for hamstring and posterior chain balance",
-        "Side planks and bird-dogs for lateral core stability"
-      ],
-      "cardio": "Moderate-intensity interval training (HIIT) or brisk incline walking 2-3 sessions per week.",
-      "weeklyStructure": "2-3 days full-body resistance training + 2 days low-impact cardio and mobility."
+  "female": {
+    "hourglass": {
+      "displayName": "Hourglass",
+      "summary": "Proportions are naturally balanced with a defined waist. Focus on maintaining symmetry, core stability, and highlighting your natural waistline.",
+      "fitness": {
+        "focus": "Total-body symmetry and core stability to support spinal alignment and natural curves.",
+        "exercises": [
+          "Goblet squats for quadriceps and glute strength",
+          "Dumbbell overhead presses to maintain upper-body posture",
+          "Romanian deadlifts for hamstring and posterior chain balance",
+          "Side planks and bird-dogs for lateral core stability"
+        ],
+        "cardio": "Moderate-intensity interval training (HIIT) or brisk incline walking 2-3 sessions per week.",
+        "weeklyStructure": "2-3 days full-body resistance training + 2 days low-impact cardio and mobility."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Focus on balanced macronutrients: quality lean protein, healthy fats (avocado, olive oil), and slow-digesting complex carbs.",
+          "Maintain consistent hydration: aim for 2.5 to 3 liters of water daily.",
+          "Incorporate regular fiber-rich vegetables to support steady energy levels."
+        ],
+        "postureTips": [
+          "Mindful pelvic alignment: avoid excessive anterior pelvic tilt when standing.",
+          "Perform daily thoracic spine rotations to maintain upper back openness."
+        ],
+        "recovery": "7-8 hours of quality sleep with mindful stretching focusing on hip flexors and lower back."
+      },
+      "fashion": {
+        "tops": ["Fitted wrap tops", "V-neck and scoop neck shirts", "Tailored button-downs with waist darts", "Fitted ribbed knits"],
+        "bottoms": ["High-waisted straight-leg jeans", "High-rise tailored trousers", "Pencil skirts", "Bootcut or subtle flare pants"],
+        "dresses": ["Classic wrap dresses", "Belted shirt dresses", "Fit-and-flare silhouettes", "Bodycon or tailored sheath dresses"],
+        "outerwear": ["Trench coats with waist belts", "Cropped or waist-length jackets", "Tailored blazers that cinch at the waist"],
+        "stylingTips": [
+          "Highlight your natural waist with belts and fitted cuts.",
+          "Choose fabrics with gentle stretch that drape gracefully rather than stiff, boxy materials.",
+          "Ensure upper and lower garment volumes remain harmonious."
+        ],
+        "avoid": ["Oversized, shapeless boxy tunics", "High stiff turtlenecks without waist definition", "Drop-waist dresses"]
+      }
     },
-    "wellness": {
-      "nutritionTips": [
-        "Focus on balanced macronutrients: quality lean protein, healthy fats (avocado, olive oil), and slow-digesting complex carbs.",
-        "Maintain consistent hydration: aim for 2.5 to 3 liters of water daily.",
-        "Incorporate regular fiber-rich vegetables to support steady energy levels."
-      ],
-      "postureTips": [
-        "Mindful pelvic alignment: avoid excessive anterior pelvic tilt when standing.",
-        "Perform daily thoracic spine rotations to maintain upper back openness."
-      ],
-      "recovery": "7-8 hours of quality sleep with mindful stretching focusing on hip flexors and lower back."
+    "rectangle": {
+      "displayName": "Rectangle",
+      "summary": "Athletic and naturally proportional silhouette with an even balance across shoulders, bust, and hips. Focus on building curve illusion through lateral deltoids, glutes, and waist-cinching styling.",
+      "fitness": {
+        "focus": "Hypertrophy for shoulder caps (lateral deltoids) and glutes to enhance anatomical curvature, alongside rotational core strength.",
+        "exercises": [
+          "Barbell hip thrusts for maximum glute development",
+          "Dumbbell lateral raises to broaden shoulder cap profile",
+          "Walking lunges with dumbbells for lower body contouring",
+          "Russian twists and cable woodchops for oblique definition"
+        ],
+        "cardio": "Sprint interval training or stair-climber sessions to encourage lower-body muscular tone.",
+        "weeklyStructure": "3 days targeted resistance training (emphasis on glutes and shoulders) + 1-2 days active recovery."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Ensure adequate daily protein intake (1.6 - 2.0g per kg of body weight if pursuing muscle tone).",
+          "Fuel resistance sessions with pre-workout complex carbohydrates (oats, sweet potatoes).",
+          "Maintain balanced electrolyte levels especially on strength training days."
+        ],
+        "postureTips": [
+          "Engage core brace during standing to prevent hyperextending knees.",
+          "Scapular retractions to keep chest proud and shoulders set back."
+        ],
+        "recovery": "Foam roll hamstrings and lats post-workout; incorporate dynamic hip mobility routines."
+      },
+      "fashion": {
+        "tops": ["Ruffled, cowl, or sweetheart necklines", "Off-the-shoulder and boat-neck tops", "Peplum tops that create waist flounce", "Crop tops paired with high-waisted bottoms"],
+        "bottoms": ["A-line and pleated skirts", "Paperbag waist trousers", "Mom jeans or curved cargo pants", "Wide-leg palazzo trousers"],
+        "dresses": ["Fit-and-flare dresses", "Cut-out dresses emphasizing mid-torso", "Ruched bodycon dresses", "Belted midi dresses"],
+        "outerwear": ["Moto jackets with metallic details", "Belted blazers", "Long duster coats with waist ties"],
+        "stylingTips": [
+          "Create the illusion of curves using belts, peplum details, and horizontal textures.",
+          "Experiment with dramatic necklines and layered textures to add dimensional depth.",
+          "Pair voluminous bottoms with fitted tops or vice versa."
+        ],
+        "avoid": ["Straight shapeless shift dresses", "Vertical pinstripe suits without waist cinching", "Monochrome boxy t-shirts"]
+      }
     },
-    "fashion": {
-      "tops": ["Fitted wrap tops", "V-neck and scoop neck shirts", "Tailored button-downs with waist darts", "Fitted ribbed knits"],
-      "bottoms": ["High-waisted straight-leg jeans", "High-rise tailored trousers", "Pencil skirts", "Bootcut or subtle flare pants"],
-      "dresses": ["Classic wrap dresses", "Belted shirt dresses", "Fit-and-flare silhouettes", "Bodycon or tailored sheath dresses"],
-      "outerwear": ["Trench coats with waist belts", "Cropped or waist-length jackets", "Tailored blazers that cinch at the waist"],
-      "stylingTips": [
-        "Highlight your natural waist with belts and fitted cuts.",
-        "Choose fabrics with gentle stretch that drape gracefully rather than stiff, boxy materials.",
-        "Ensure upper and lower garment volumes remain harmonious."
-      ],
-      "avoid": ["Oversized, shapeless boxy tunics", "High stiff turtlenecks without waist definition", "Drop-waist dresses"]
+    "pear": {
+      "displayName": "Pear / Triangle",
+      "summary": "Hips and thighs form the prominent proportion with a slender upper torso and defined waist. Focus on upper-body posture and strength, and styling that draws the eye upward.",
+      "fitness": {
+        "focus": "Developing upper-body breadth (shoulders, chest, and back) to balance hip proportions, plus metabolic conditioning.",
+        "exercises": [
+          "Seated dumbbell shoulder presses to expand biacromial breadth",
+          "Lat pulldowns and bent-over rows for a strong, wide upper back",
+          "Incline dumbbell chest presses for upper chest fullness",
+          "Bodyweight or kettlebell goblet squats for lower body conditioning"
+        ],
+        "cardio": "Incline walking, elliptical training, or rowing to build upper back endurance.",
+        "weeklyStructure": "3 days upper-body focused strength + 1 day metabolic lower-body circuit + 2 days cardio."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Focus on anti-inflammatory whole foods: berries, dark leafy greens, salmon, and walnuts.",
+          "Stay hydrated to support lymphatic drainage and lower-extremity circulation.",
+          "Moderate dietary sodium to reduce water retention around the lower body."
+        ],
+        "postureTips": [
+          "Strengthen rhomboids and lower traps to prevent rounded shoulders over a narrow ribcage.",
+          "Stretch hip flexors daily to support optimal pelvic rotation."
+        ],
+        "recovery": "Elevate legs for 10-15 minutes post-workout to facilitate venous return; light foam rolling for glutes."
+      },
+      "fashion": {
+        "tops": ["Boatneck, off-the-shoulder, and cowl tops", "Structured puff-sleeve or cap-sleeve blouses", "Horizontal striped tops", "Tops with ruffles or embroidery at shoulders"],
+        "bottoms": ["A-line skirts in flowing fabrics", "Dark-wash straight-leg or bootcut jeans", "Tailored wide-leg trousers", "Flat-front mid-rise trousers"],
+        "dresses": ["Fit-and-flare dresses", "A-line wrap dresses", "Empire waist dresses", "Halter-neck sundresses"],
+        "outerwear": ["Structured jackets with shoulder epaulets", "A-line swing coats", "Jackets that hit above the widest part of hips"],
+        "stylingTips": [
+          "Draw visual interest upward with statement jewelry, scarves, and distinctive necklines.",
+          "Keep bottoms dark, sleek, and unembellished while wearing brighter tones on top.",
+          "Choose fluid, drapeable fabrics for skirts and trousers."
+        ],
+        "avoid": ["Skinny jeans in light washes", "Cargo pants with side thigh pockets", "Pleated skirts starting right at hip breadth"]
+      }
+    },
+    "inverted_triangle": {
+      "displayName": "Inverted Triangle",
+      "summary": "Broad shoulders and chest with slender hips and legs. Focus on lower-body strength and volume development, with clothing silhouettes that add visual weight to the hips.",
+      "fitness": {
+        "focus": "Lower-body hypertrophy (glutes, quads, hamstrings) to establish anatomical balance with upper-body breadth.",
+        "exercises": [
+          "Barbell back squats with progressive overload for quadricep mass",
+          "Bulgarian split squats for targeted glute and quad development",
+          "Barbell conventional or sumo deadlifts for posterior chain breadth",
+          "Walking lunges with dumbbells for lower-body muscle fullness"
+        ],
+        "cardio": "Cycling, stair climbing, or rowing sprints to stimulate leg muscle growth and metabolic rate.",
+        "weeklyStructure": "3 days lower-body focused resistance + 1 day light upper-body maintenance + 1-2 days cardio."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Ensure sufficient caloric surplus or maintenance with adequate complex carbohydrates to fuel heavy leg sessions.",
+          "Incorporate healthy fats (nuts, seeds, olive oil) for hormone synthesis.",
+          "Hydrate thoroughly before and after high-volume leg workouts."
+        ],
+        "postureTips": [
+          "Open anterior chest muscles (pectoralis major/minor) to counteract forward shoulder bias.",
+          "Engage core stability to prevent excessive lumbar arching during heavy compound lifts."
+        ],
+        "recovery": "Prioritize lower-body mobility: couch stretch for hip flexors and pigeon pose for glutes."
+      },
+      "fashion": {
+        "tops": ["Soft V-neck and scoop neck tops", "Raglan sleeve tops", "Wrap tops in lightweight drapeable fabrics", "Minimalist sleeveless tops with wide straps"],
+        "bottoms": ["Pleated, flared, or A-line skirts", "Wide-leg and palazzo pants", "Light-wash or patterned jeans", "Cargo pants with dimensional pockets"],
+        "dresses": ["Fit-and-flare dresses with voluminous skirts", "Peplum dresses", "Drop-waist dresses", "Tiered bohemian maxi dresses"],
+        "outerwear": ["Single-breasted fluid duster coats", "Collarless jackets", "Peplum jackets that flare at the hips"],
+        "stylingTips": [
+          "Add volume, texture, and bright colors to the lower body.",
+          "Choose tops with clean, vertical necklines that minimize shoulder visual breadth.",
+          "Use eye-catching shoes, patterned trousers, and statement belts."
+        ],
+        "avoid": ["Padded shoulder blazers", "Boatneck or off-the-shoulder tops", "Double-breasted jackets with wide lapels"]
+      }
+    },
+    "apple": {
+      "displayName": "Apple / Oval",
+      "summary": "Weight is distributed primarily around the midsection with relatively slender legs and arms. Focus on deep core bracing, posture alignment, and fluid vertical styling lines.",
+      "fitness": {
+        "focus": "Deep core activation (transverse abdominis), posture alignment, and metabolic conditioning to support overall body composition.",
+        "exercises": [
+          "Deadbugs and bird-dogs for deep transverse abdominal bracing",
+          "Goblet squats to maintain leg strength and upright posture",
+          "Lat pulldowns and face pulls to strengthen the upper back",
+          "Farmer's carries for functional total-body and core stability"
+        ],
+        "cardio": "Low-impact steady-state (LISS) cardio such as brisk incline walking or swimming 3-4 days per week.",
+        "weeklyStructure": "3 days full-body functional strength + 3 days low-impact cardio and daily walking."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Prioritize fiber-rich legumes, cruciferous vegetables, and lean protein to support steady blood glucose.",
+          "Minimize refined sugars and ultra-processed foods that encourage visceral fat accumulation.",
+          "Enjoy antioxidant-rich teas (green tea) and stay consistently hydrated throughout the day."
+        ],
+        "postureTips": [
+          "Avoid slouching when seated: keep ribs stacked directly over the pelvis.",
+          "Perform daily chin tucks and thoracic extensions to combat forward head posture."
+        ],
+        "recovery": "Stress-reducing recovery practices: 10 minutes of diaphragmatic breathing and consistent 8-hour sleep."
+      },
+      "fashion": {
+        "tops": ["Empire waist tops and flowy tunics", "V-neck and deep scoop neck blouses", "Wrap tops tied softly at the side", "Tops with vertical pleating or vertical prints"],
+        "bottoms": ["Straight-leg or bootcut jeans with flat elastic waistbands", "High-waisted wide-leg trousers", "A-line skirts with gentle drape", "Dark denim with minimal fading"],
+        "dresses": ["Empire line dresses", "A-line dresses in fluid fabrics", "Shift dresses with vertical seam details", "Maxi dresses with empire cuts"],
+        "outerwear": ["Open-front long cardigans and dusters", "Single-breasted unstructured blazers", "Tailored coats worn open to create vertical lines"],
+        "stylingTips": [
+          "Create strong vertical lines using open jackets, vertical stripes, and long necklaces.",
+          "Highlight your legs and décolletage while allowing fabrics to drape gently over the midsection.",
+          "Choose monochromatic color palettes for a lengthening, streamlined silhouette."
+        ],
+        "avoid": ["Tight, body-clinging jerseys around the waist", "Wide waist belts cinched tightly over the midriff", "Boxy cropped tops ending at the belly"]
+      }
     }
   },
-  "rectangle": {
-    "displayName": "Rectangle",
-    "summary": "Athletic and naturally proportional silhouette with an even balance across shoulders, chest, and hips. Focus on building curve illusion through lateral deltoids, glutes, and waist-cinching styling.",
-    "fitness": {
-      "focus": "Hypertrophy for shoulder caps (lateral deltoids) and glutes to enhance anatomical curvature, alongside rotational core strength.",
-      "exercises": [
-        "Barbell hip thrusts for maximum glute development",
-        "Dumbbell lateral raises to broaden shoulder cap profile",
-        "Walking lunges with dumbbells for lower body contouring",
-        "Russian twists and cable woodchops for oblique definition"
-      ],
-      "cardio": "Sprint interval training or stair-climber sessions to encourage lower-body muscular tone.",
-      "weeklyStructure": "3 days targeted resistance training (emphasis on glutes and shoulders) + 1-2 days active recovery."
+  "male": {
+    "trapezoid": {
+      "displayName": "Trapezoid",
+      "summary": "The classic athletic male proportion: broad shoulders, developed chest, and balanced, gently tapered waist and hips. Focus on maintaining symmetrical power, core stability, and sharp tailoring.",
+      "fitness": {
+        "focus": "Balanced compound athletic strength, maintaining V-taper symmetry through deltoid caps, upper back, and quad development.",
+        "exercises": [
+          "Barbell bench press and incline dumbbell press for upper chest fullness",
+          "Weighted pull-ups and chest-supported rows for a wide V-taper back",
+          "Barbell back squats and Romanian deadlifts for lower body power",
+          "Hanging leg raises and Pallof presses for anti-rotational core stability"
+        ],
+        "cardio": "High-intensity interval training (HIIT), sprint intervals, or rowing 2 sessions per week.",
+        "weeklyStructure": "4 days upper/lower or push/pull/legs split + 2 days mobility and cardio."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Maintain high quality protein (1.8 - 2.2g per kg of body weight) to support lean muscle preservation.",
+          "Incorporate zinc and magnesium rich foods (lean beef, pumpkin seeds, oysters) to optimize natural testosterone production.",
+          "Time complex carbohydrate intake around heavy resistance training sessions."
+        ],
+        "postureTips": [
+          "Maintain active shoulder retraction to prevent anterior deltoid dominance and rounded shoulders.",
+          "Perform thoracic extensions on a foam roller to counteract desk work."
+        ],
+        "recovery": "7-9 hours of restorative sleep; weekly mobility sessions focusing on ankles, hips, and shoulders."
+      },
+      "fashion": {
+        "tops": ["Slim-fit dress shirts with semi-spread collars", "Tailored polo shirts with structured plackets", "Fitted crew neck tees in premium cotton", "Fitted henleys and knit sweaters"],
+        "bottoms": ["Flat-front slim-straight chinos", "Tailored wool trousers with gentle taper", "Dark-wash tapered jeans", "Tailored mid-thigh shorts"],
+        "dresses": [],
+        "suits": ["Two-button single-breasted suits with notch lapels", "Unstructured navy sport coats", "Charcoal tailored wool suits"],
+        "outerwear": ["Classic bomber jackets", "Tailored single-breasted overcoats", "Fitted leather or suede trucker jackets"],
+        "stylingTips": [
+          "Most ready-to-wear menswear is tailored to your proportions; focus on precise shoulder seam placement.",
+          "Maintain a clean taper through trouser legs with minimal shoe break.",
+          "Highlight your natural V-taper with tapered fits rather than boxy cuts."
+        ],
+        "avoid": ["Oversized boxy streetwear that hides your athletic taper", "Drop-crotch sweatpants", "Excessively padded suit shoulders"]
+      }
     },
-    "wellness": {
-      "nutritionTips": [
-        "Ensure adequate daily protein intake (1.6 - 2.0g per kg of body weight if pursuing muscle tone).",
-        "Fuel resistance sessions with pre-workout complex carbohydrates (oats, sweet potatoes).",
-        "Maintain balanced electrolyte levels especially on strength training days."
-      ],
-      "postureTips": [
-        "Engage core brace during standing to prevent hyperextending knees.",
-        "Scapular retractions to keep chest proud and shoulders set back."
-      ],
-      "recovery": "Foam roll hamstrings and lats post-workout; incorporate dynamic hip mobility routines."
+    "inverted_triangle": {
+      "displayName": "Inverted Triangle",
+      "summary": "Prominent athletic V-taper with very broad shoulders and chest tapering down to a narrow waist and hips. Focus on building lower-body leg mass to balance upper breadth, and tailoring clothes that accommodate chest breadth without billowing at the waist.",
+      "fitness": {
+        "focus": "Hypertrophy for the quadriceps, hamstrings, and calves to establish visual and functional symmetry with a powerful upper torso.",
+        "exercises": [
+          "Heavy barbell back squats and front squats for quadricep mass",
+          "Bulgarian split squats for targeted unilateral leg development",
+          "Romanian deadlifts and seated leg curls for hamstring fullness",
+          "Face pulls and band pull-aparts for rotator cuff health and rear delt balance"
+        ],
+        "cardio": "Incline walking, cycling, or stair-climber sessions to reinforce lower-body muscular endurance.",
+        "weeklyStructure": "3 days lower-body focused strength + 2 days upper-body maintenance and rotator cuff care."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Ensure sufficient caloric intake to fuel high-volume leg training.",
+          "Consume anti-inflammatory omega-3 fatty acids (salmon, flaxseeds) for joint and tendon resilience.",
+          "Stay consistently hydrated to prevent muscle cramps in heavy compound lifts."
+        ],
+        "postureTips": [
+          "Stretch pectoralis major and latissimus dorsi to prevent internal shoulder rotation.",
+          "Strengthen lower traps and serratus anterior for scapular upward rotation."
+        ],
+        "recovery": "Foam roll quads, IT bands, and lats; incorporate weekly sauna or contrast showers."
+      },
+      "fashion": {
+        "tops": ["Raglan sleeve t-shirts and sweaters", "V-neck t-shirts and knitwear that soften shoulder width", "Tailored athletic-fit button-downs with elastane stretch", "Lightweight drapeable knit polo shirts"],
+        "bottoms": ["Straight-leg and athletic-taper trousers", "Relaxed-fit chinos that add lower-body substance", "Pleated trousers that create proportional hip volume", "Cargo pants with subtle side pockets"],
+        "dresses": [],
+        "suits": ["Unstructured blazers with natural, soft shoulders", "Single-breasted suits with moderate lapels"],
+        "outerwear": ["Harrington jackets", "Field jackets with hip pockets", "Knee-length trench coats with natural shoulders"],
+        "stylingTips": [
+          "Draw visual weight downward using textured or lighter-colored trousers.",
+          "Have your shirts tailored through the torso to eliminate excess fabric bunching at the waist.",
+          "Choose natural, unpadded shoulders on jackets and blazers."
+        ],
+        "avoid": ["Heavily padded shoulder suit jackets", "Skinny-fit jeans that make your lower body look tiny", "Boat neck tops and horizontal shoulder stripes"]
+      }
     },
-    "fashion": {
-      "tops": ["Ruffled, cowl, or sweetheart necklines", "Off-the-shoulder and boat-neck tops", "Peplum tops that create waist flounce", "Crop tops paired with high-waisted bottoms"],
-      "bottoms": ["A-line and pleated skirts", "Paperbag waist trousers", "Mom jeans or curved cargo pants", "Wide-leg palazzo trousers"],
-      "dresses": ["Fit-and-flare dresses", "Cut-out dresses emphasizing mid-torso", "Ruched bodycon dresses", "Belted midi dresses"],
-      "outerwear": ["Moto jackets with metallic details", "Belted blazers", "Long duster coats with waist ties"],
-      "stylingTips": [
-        "Create the illusion of curves using belts, peplum details, and horizontal textures.",
-        "Experiment with dramatic necklines and layered textures to add dimensional depth.",
-        "Pair voluminous bottoms with fitted tops or vice versa."
-      ],
-      "avoid": ["Straight shapeless shift dresses", "Vertical pinstripe suits without waist cinching", "Monochrome boxy t-shirts"]
-    }
-  },
-  "pear": {
-    "displayName": "Pear / Triangle",
-    "summary": "Hips and thighs form the prominent proportion with a slender upper torso and defined waist. Focus on upper-body posture and strength, and styling that draws the eye upward.",
-    "fitness": {
-      "focus": "Developing upper-body breadth (shoulders, chest, and back) to balance hip proportions, plus metabolic conditioning.",
-      "exercises": [
-        "Seated dumbbell shoulder presses to expand biacromial breadth",
-        "Lat pulldowns and bent-over rows for a strong, wide upper back",
-        "Incline dumbbell chest presses for upper chest fullness",
-        "Bodyweight or kettlebell goblet squats for lower body conditioning"
-      ],
-      "cardio": "Incline walking, elliptical training, or rowing to build upper back endurance.",
-      "weeklyStructure": "3 days upper-body focused strength + 1 day metabolic lower-body circuit + 2 days cardio."
+    "rectangle": {
+      "displayName": "Rectangle",
+      "summary": "Straight, athletic build where chest, waist, and hips follow an even line with minimal taper. Focus on expanding upper-back and lateral deltoid breadth to create an athletic V-taper illusion.",
+      "fitness": {
+        "focus": "Hypertrophy for the lateral deltoids, upper pectorals, and lats to craft a defined taper, combined with glute building.",
+        "exercises": [
+          "Dumbbell lateral raises and cable upright rows for wider shoulder caps",
+          "Wide-grip lat pulldowns and bent-over barbell rows for upper back wingspan",
+          "Incline dumbbell bench press for clavicular chest thickness",
+          "Barbell hip thrusts and walking lunges for lower-body curvature"
+        ],
+        "cardio": "Sprint interval training or rowing machine to stimulate upper-back and posterior chain power.",
+        "weeklyStructure": "4 days hypertrophy training (emphasis on lateral delts and lats) + 1-2 days active recovery."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Maintain a slight caloric surplus (250-400 kcal) if aiming to build shoulder and back breadth.",
+          "Eat quality lean proteins (chicken, eggs, Greek yogurt) distributed across 4-5 meals daily.",
+          "Consume complex carbohydrates before workouts to maximize training intensity."
+        ],
+        "postureTips": [
+          "Engage in scapular retractions and chest-opening stretches to stand tall and broad.",
+          "Avoid slouching over keyboards to keep the ribcage open."
+        ],
+        "recovery": "Prioritize 8 hours of sleep; stretch lats and chest post-training to maintain mobility."
+      },
+      "fashion": {
+        "tops": ["Layered overshirts and casual shirts over fitted tees", "Horizontal-striped Breton shirts that widen the chest", "Structured shirts with chest pockets and epaulets", "Chunky textured knit sweaters (cable knit)"],
+        "bottoms": ["Slim-tapered chinos with clean cuffs", "Medium-wash jeans with textured whiskering", "Pleated dress trousers", "Textured corduroy pants"],
+        "dresses": [],
+        "suits": ["Structured blazers with light shoulder padding to define the upper frame", "Double-breasted jackets to build chest presence"],
+        "outerwear": ["Peacoats with wide lapels", "Leather biker jackets with structured shoulders", "Quilted jackets with horizontal baffle patterns"],
+        "stylingTips": [
+          "Use layering (open jacket over crew neck) to add dimensional depth and breadth.",
+          "Opt for jackets with subtle shoulder padding to create a structured silhouette.",
+          "Choose contrast waistbands or tuck in shirts with a quality belt to break up the vertical block."
+        ],
+        "avoid": ["Unstructured shapeless sack coats", "Vertical pinstripe suits without shoulder definition", "Skin-tight monochrome t-shirts"]
+      }
     },
-    "wellness": {
-      "nutritionTips": [
-        "Focus on anti-inflammatory whole foods: berries, dark leafy greens, salmon, and walnuts.",
-        "Stay hydrated to support lymphatic drainage and lower-extremity circulation.",
-        "Moderate dietary sodium to reduce water retention around the lower body."
-      ],
-      "postureTips": [
-        "Avoid slouching the shoulders forward; focus on opening the clavicle.",
-        "Practice standing tall with even weight distribution across both feet."
-      ],
-      "recovery": "Elevate legs after heavy workouts; incorporate hamstring and hip flexor static stretches."
+    "triangle": {
+      "displayName": "Triangle / A-Frame",
+      "summary": "Lower torso (waist and hips) is wider than the chest and shoulders. Focus on upper-body breadth in the gym and structured tailoring that squares off the shoulders while streamlining the midsection.",
+      "fitness": {
+        "focus": "Developing upper-torso breadth (shoulders, chest, upper back) and full-body metabolic conditioning to balance lower torso proportions.",
+        "exercises": [
+          "Standing barbell overhead press for total shoulder development",
+          "Incline dumbbell presses to elevate the upper chest line",
+          "Cable lateral raises and face pulls for deltoid cap widening",
+          "Kettlebell swings and goblet squats for metabolic conditioning"
+        ],
+        "cardio": "Incline treadmill walking or rowing machine to build upper body stamina while burning calories.",
+        "weeklyStructure": "3-4 days upper-body focused resistance + 2 days cardiovascular conditioning."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Focus on nutrient-dense whole foods: high fiber, lean proteins, and complex carbohydrates.",
+          "Stay hydrated to enhance metabolic efficiency and decrease water retention around the midriff.",
+          "Reduce alcohol and sugary beverages that contribute to visceral and abdominal adiposity."
+        ],
+        "postureTips": [
+          "Stand tall with proud chest: imagine drawing the shoulder blades together and downward.",
+          "Avoid hunching shoulders inward which makes the upper body look narrower."
+        ],
+        "recovery": "Foam roll the thoracic spine and stretch the chest to open upper posture."
+      },
+      "fashion": {
+        "tops": ["Vertical-striped dress shirts", "Structured polo shirts with crisp collars", "Crew neck sweaters with shoulder detailing", "Dark, tailored button-down shirts"],
+        "bottoms": ["Dark straight-leg trousers", "Flat-front mid-rise chinos in navy, charcoal, or black", "Clean dark-wash denim without fading", "Trousers tailored to fall cleanly over footwear"],
+        "dresses": [],
+        "suits": ["Single-breasted two-button suits with structured shoulders and notch lapels", "Navy tailored sports coat with light shoulder roping"],
+        "outerwear": ["Single-breasted trench coats and car coats", "Harrington jackets that hit right at the hip", "Tailored wool overcoats"],
+        "stylingTips": [
+          "Wear darker colors on your lower half and lighter or patterned colors on your upper half.",
+          "Jackets with structured shoulders provide instant proportion balance.",
+          "Keep trousers flat-fronted and streamlined around the hips and waist."
+        ],
+        "avoid": ["Skinny tapered jeans that accentuate hip width", "Horizontal stripes across the abdomen", "Double-breasted jackets that add bulk to the midsection"]
+      }
     },
-    "fashion": {
-      "tops": ["Boat-neck and Bardot off-the-shoulder tops", "Puff-sleeve or statement shoulder blouses", "Bright colors and bold horizontal prints on top", "Cowl-neck sweaters"],
-      "bottoms": ["A-line skirts that skim hips smoothly", "Dark wash straight-leg or bootcut jeans", "Flat-front trousers without side pockets", "Flowing palazzo pants"],
-      "dresses": ["A-line and fit-and-flare dresses", "Empire-waist dresses", "Wrap dresses with flutter sleeves"],
-      "outerwear": ["Cropped jackets that end above hip bone", "Structured shoulder blazers", "Double-breasted pea coats with wide lapels"],
-      "stylingTips": [
-        "Draw attention to your upper body with necklines, statement jewelry, and light colors on top.",
-        "Keep lower garments streamlined, dark-toned, and unembellished.",
-        "Emphasize your slim waistline with fitted cuts."
-      ],
-      "avoid": ["Cargo pants with side thigh pockets", "Light-colored skinny jeans", "Drop-waist skirts that add bulk to hips"]
-    }
-  },
-  "inverted_triangle": {
-    "displayName": "Inverted Triangle",
-    "summary": "Shoulders and bust are broader than hips and waist. Focus on lower-body muscular volume to achieve harmony, and styling that softens shoulders while accentuating hips and legs.",
-    "fitness": {
-      "focus": "Lower-body hypertrophy (quads, glutes, hamstrings, and calves) to build lower proportion symmetry with broad shoulders.",
-      "exercises": [
-        "Heavy barbell or dumbbell back squats for leg mass",
-        "Bulgarian split squats for targeted glute and quad development",
-        "Leg press and calf raises for lower leg definition",
-        "Cable face pulls for postural shoulder health without excessive deltoid bulk"
-      ],
-      "cardio": "Stair master, cycling, or outdoor hill sprints to build lower-body muscular endurance.",
-      "weeklyStructure": "3 days lower-body focused strength + 1 day light upper-body maintenance + 1-2 days cardio."
-    },
-    "wellness": {
-      "nutritionTips": [
-        "Ensure sufficient calorie and complex carbohydrate intake to support lower-body muscle synthesis.",
-        "Consume post-workout meals with a 3:1 carb-to-protein ratio within 90 minutes of training.",
-        "Prioritize magnesium-rich foods (pumpkin seeds, spinach) for neuromuscular relaxation."
-      ],
-      "postureTips": [
-        "Keep shoulders relaxed away from ears; release tension in upper trapezius muscles.",
-        "Strengthen deep cervical flexors to maintain neutral head alignment."
-      ],
-      "recovery": "Foam roll quads and IT bands regularly; practice deep diaphragmatic breathing."
-    },
-    "fashion": {
-      "tops": ["Deep V-neck and scoop neck tops", "Raglan or halter-neck styles that visually narrow shoulders", "Vertical stripe tops", "Soft, fluid drapey fabrics"],
-      "bottoms": ["Wide-leg and flare jeans", "Pleated and A-line skirts with bold prints", "Cargo trousers with hip details", "Culottes and palazzo pants"],
-      "dresses": ["V-neck wrap dresses with full skirts", "Fit-and-flare dresses with tiered skirts", "Peplum hemlines"],
-      "outerwear": ["Single-breasted fluid duster coats", "Jackets with minimal or unpadded shoulders", "Cocoon or straight coats ending mid-thigh"],
-      "stylingTips": [
-        "Create volume on your lower half with bright colors, prints, and flare cuts.",
-        "Use vertical lines and deep necklines to elongate and soften broad shoulders.",
-        "Keep shoulder lines clean and free of shoulder pads or puff sleeves."
-      ],
-      "avoid": ["Shoulder pads and epaulets", "Boat-neck tops and horizontal stripes across the chest", "Tapered skinny jeans without volume"]
-    }
-  },
-  "apple": {
-    "displayName": "Apple / Oval",
-    "summary": "Midsection is the prominent feature, often accompanied by slender legs and arms. Focus on deep core activation, cardiovascular conditioning, and styling that elongates the torso while showcasing limbs.",
-    "fitness": {
-      "focus": "Deep transverse abdominis strengthening, posture alignment, and metabolic conditioning to reduce visceral load.",
-      "exercises": [
-        "Dead bugs and hollow body holds for deep core stability",
-        "Farmer's carries for functional core brace and grip strength",
-        "Bodyweight lunges and step-ups to build slender leg muscularity",
-        "Dumbbell chest supported rows for upper spinal posture"
-      ],
-      "cardio": "Low-impact steady state (LISS) cardio such as incline walking or swimming 3-4 times weekly.",
-      "weeklyStructure": "3 days functional resistance & core stability + 3 days low-impact aerobic conditioning."
-    },
-    "wellness": {
-      "nutritionTips": [
-        "Emphasize fiber-dense meals (flaxseed, legumes, cruciferous vegetables) to promote gut motility.",
-        "Incorporate healthy monounsaturated fats while minimizing refined sugars and sweetened beverages.",
-        "Practice mindful pacing during meals to prevent postprandial bloating."
-      ],
-      "postureTips": [
-        "Avoid leaning backward to compensate for torso weight; maintain tall rib-over-pelvis alignment.",
-        "Incorporate daily pelvic floor and transverse abdominis breathing."
-      ],
-      "recovery": "Prioritize 8 hours of sleep; incorporate gentle restorative yoga or light walking after dinners."
-    },
-    "fashion": {
-      "tops": ["Empire-waist tops", "Flowing tunic tops with V-necklines", "Wrap tops that tie under the bust", "Asymmetrical hemline tops"],
-      "bottoms": ["Slim or straight-leg trousers showcasing legs", "Flat-front pull-on pants with stretch", "A-line knee-length skirts", "High-rise dark wash bootcut jeans"],
-      "dresses": ["Empire-cut and A-line dresses", "Shift dresses that fall cleanly past the hips", "V-neck wrap dresses with diagonal draping"],
-      "outerwear": ["Open-front long cardigans and blazers creating vertical lines", "Single-breasted coats with deep lapels", "Kimono style lightweight jackets"],
-      "stylingTips": [
-        "Draw attention upward to the face and neckline with V-necks and statement earrings.",
-        "Highlight your legs with knee-length hemlines and well-fitted straight pants.",
-        "Use monochromatic or vertical color columns underneath an unbuttoned jacket or long cardigan."
-      ],
-      "avoid": ["Clingy jersey fabric around the midsection", "Wide horizontal belts across the belly", "Cropped boxy tops"]
+    "oval": {
+      "displayName": "Oval / Round",
+      "summary": "Weight is carried primarily through the midsection, with relatively narrower shoulders and limbs. Focus on full-body functional strength, posture alignment, and clean monochromatic vertical lines.",
+      "fitness": {
+        "focus": "Full-body compound movements and metabolic resistance training to improve body composition and spinal posture.",
+        "exercises": [
+          "Farmer's walks with heavy dumbbells for functional grip, core, and posture strength",
+          "Chest-supported dumbbell rows to build mid-back endurance without spinal load",
+          "Goblet squats with a kettlebell for lower-body power and upright posture",
+          "Landmine presses for joint-friendly upper-body pushing power"
+        ],
+        "cardio": "Low-impact steady-state (LISS) cardio: brisk incline walking, elliptical, or swimming 3-4 days per week.",
+        "weeklyStructure": "3 days full-body functional strength training + 3 days low-impact cardiovascular activity."
+      },
+      "wellness": {
+        "nutritionTips": [
+          "Focus on steady-state blood sugar control: emphasize leafy greens, lean meats, fish, and legumes.",
+          "Keep evening meals lighter and allow 2-3 hours between dinner and sleep for optimal digestion.",
+          "Prioritize quality hydration: start the day with 500ml of water."
+        ],
+        "postureTips": [
+          "Counteract anterior pelvic tilt by activating glutes during standing.",
+          "Perform chin tucks and wall angels to align head and neck over the spine."
+        ],
+        "recovery": "Consistent 7-8 hours of sleep; gentle daily walking for active recovery and lymphatic flow."
+      },
+      "fashion": {
+        "tops": ["Dark solid-tone button-down shirts", "V-neck sweaters and tees that elongate the neck", "Shirts with subtle vertical stripes", "Spread collar shirts that complement a broader face"],
+        "bottoms": ["Relaxed straight-leg trousers in charcoal, navy, or black", "Dark-wash straight jeans with clean lines", "Trousers worn at the natural waistline with suspenders or clean waistband"],
+        "dresses": [],
+        "suits": ["Two-button single-breasted suits in dark matte wool", "Suits with deep V-gorge that elongates the torso"],
+        "outerwear": ["Single-breasted knee-length wool overcoats", "Tailored mac coats worn open to form vertical lines"],
+        "stylingTips": [
+          "Monochromatic dark outfits (e.g. all navy or all charcoal) create a sleek, slimming vertical line.",
+          "Wear jackets open or loosely buttoned to create slimming vertical borders.",
+          "Avoid tight horizontal breaks like contrasting bright belts."
+        ],
+        "avoid": ["Tight, clinging cotton jerseys across the belly", "Horizontal stripes or loud prints on the stomach", "Cropped or waist-length jackets that highlight midriff volume"]
+      }
     }
   }
 }

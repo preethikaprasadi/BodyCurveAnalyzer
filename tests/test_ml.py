@@ -103,3 +103,41 @@ def test_pipeline_edge_cases():
         df_case = pd.DataFrame([case])
         pred = pipeline.predict(df_case)
         assert pred[0] in ["hourglass", "rectangle", "pear", "inverted_triangle", "apple"]
+
+def test_male_pipeline_prediction():
+    """Verify male pipeline loads and accurately predicts male shapes."""
+    male_pipeline_path = os.path.join("backend", "ml", "pipeline_male.pkl")
+    assert os.path.exists(male_pipeline_path), "Male pipeline must exist"
+    pipeline = joblib.load(male_pipeline_path)
+
+    sample_male = pd.DataFrame([{
+        "height": 178.0,
+        "weight": 76.0,
+        "shoulder": 46.0,
+        "bust": 104.0,
+        "waist": 82.0,
+        "hip": 96.0,
+    }])
+    prediction = pipeline.predict(sample_male)
+    assert prediction[0] in ["trapezoid", "inverted_triangle", "rectangle", "triangle", "oval"]
+
+    probabilities = pipeline.predict_proba(sample_male)[0]
+    assert len(probabilities) == 5
+    assert np.isclose(np.sum(probabilities), 1.0, atol=1e-4)
+
+def test_gender_proportions_calculation():
+    """Verify gender-specific proportion metrics."""
+    male_sample = {
+        "height": 180.0,
+        "weight": 80.0,
+        "shoulder": 46.0,
+        "bust": 105.0,
+        "waist": 82.0,
+        "hip": 95.0,
+    }
+    props = calculate_proportions(male_sample, gender="male")
+    assert props["gender"] == "male"
+    assert "chestWaistRatio" in props
+    assert props["chestWaistRatio"] == round(105.0 / 82.0, 3)
+    assert "waistHipCategory" in props
+

@@ -58,7 +58,7 @@ The application is engineered from the ground up to be **lightweight, resource-e
 │   • Flask Application Factory & Blueprints                             │
 │   • Request Validation & Sanitization Layer (`schemas/validation.py`)  │
 │   • Global Error & Exception Handlers                                  │
-│   • Modular Endpoints: /api/analyze, /api/recommendations, /api/progress│
+│   • Modular Endpoints: /api/analyze, /api/recommendations,/api/progress│
 └──────────────┬────────────────────┬────────────────────┬───────────────┘
                │                    │                    │
                ▼                    ▼                    ▼
